@@ -4,11 +4,10 @@ This folder contains the `Temporal Fushion Transformer` implemented in [`Pytorch
 
 ## Folder structure
 
-* `2022_May`: Contains the merged feature files. After removing outliers from inputs.
-  * `Total.csv`: All 3,142 counties.
+* `2022_May_cleaned`: Contains the merged feature files. After removing outliers from both inputs and outputs.
+  * `Total.csv`: All 3,142 counties. 
   * `Top_N.csv`: Subset of the features that use top N counties by population.
-* `2022_May_target_cleaned`: Contains the merged feature files. After removing outliers from both inputs and outputs.
-  * Same files as `2022_May`
+  * Because of the large file size, the `Total.csv` is available on Google drive [here](https://drive.google.com/drive/folders/16pxOo1TFAWi6HrqJ9ex_L_x3uZer7AL2?usp=sharing).
 * `Class`
   * DataMerger
   * DataProcessor
@@ -134,7 +133,7 @@ If this is still 0, then you'll have to install the cuda and cudnn versions that
 * Use the data prepration [notebook](/notebooks/Data_preparation.ipynb) or [script](/script/prepare_data.py) to create the merged data.
   * Make sure to pass the correct config.json file.
   * Check the folder paths in `args` class, whether they are consistent.
-  * Depending on your configuration it can create the merged file of all counties, based on a population cut (e.g. top 500 counties) or rurality cut. All counties are saved in `Total.csv`, population cut in `Top_X.csv` where `X` is the number of top counties by population. Rurality is saved in `Rurality_cut.csv`.
+  * Depending on your configuration it can create the merged file of all counties, based on a population cut (e.g. top 500 counties) or rurality cut. All counties are saved in `Total.csv`, population cut in `Top_X.csv` where `X` is the number of top counties by population. 
   * Currently there is a option to either remove outliers from the input and target, or not. Removing target outliers can decrease anomalies in the learning. But changing the ground truth like this is not often desirable, so you can set it to false in the `preprocess` section in the configuration.
   * Note that, scaling and splitting are not done here, but later during training and infering.
   
