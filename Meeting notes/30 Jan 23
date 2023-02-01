@@ -1,0 +1,45 @@
+Mon, 30 Jan 23 meeting
+
+Goals:
+
+Understand feature importance
+Understand the problem
+Rural vs Metro counties
+Other variables besides age/occupation/etc
+
+Judy suggestions:
+
+-Everyone should be able to run thru model fitting (top 50/100 counties data set) to gain better problem understanding.
+-By next week: let's have design of feature engineering. Run model then observe/analyze differences and refine modeling to run on different features
+
+To contribute to paper:
+-Focus on sensitivity analysis; previous paper is not that robust in this regard
+-Need to systematically interpret insights from previous modeling
+-Previous paper segments based on job sector; we should expand
+-More experiments needed; 
+-If you use different training periods temporally, will get wildly different predictions; need to be able to explain this
+-Modifying training period falls under feature engineering, not really hyper parameters
+-Need to scope desired granularity for predictions; are we trying to predict waves, are we trying to predict long-term?
+	-Point of interest is county level group aggregate effect. We are trying to predict at the county level to inform health policy decisions/resource allocation
+
+Expanding on sensitivity analysis:
+-Deep learning typically a black box; you fit and get result, but interior is a lot of feature reduction and dimensionality reduction. Very hard to get impact of individual feature
+-Morris method: run model with deltas in inputs, see change in outputs
+-Individual feature analysis
+-Challenge of deep learning: nonlinearity, you don't know what impact features has.
+Our task is to cut thru the nonlinear noise and figure out actual impacts of individual features. 
+
+-Morris method expansion: you have a vector of perturbations for each feature (changing over time series, changing over location space)
+
+-Sensitivity analysis will use trained model, so not too bad for computational expense
+
+Ex: subgroup of 28/29 year olds as static variable, and put in vaccination rate. Then input perturbation
+
+Morris index not comparable across models
+
+Can do different variables, can do different combinations. Up to us to select features.
+
+Good research question? Mobility/density? JF open to any question, but need to make sure it's interesting and insightful.
+
+Think of tentative question before running models, but need to do some EDA
+
