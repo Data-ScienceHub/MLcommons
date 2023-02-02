@@ -61,7 +61,7 @@ from dataclasses import dataclass
 
 @dataclass
 class args:
-    result_folder = '../results/TFT_baseline/' 
+    result_folder = '../scratch/TFT_baseline/' 
     figPath = os.path.join(result_folder, 'figures_morris')
     checkpoint_folder = os.path.join(result_folder, 'checkpoints')
     input_filePath = '../2022_May_cleaned/Top_100.csv'
@@ -70,7 +70,7 @@ class args:
     model_path = os.path.join(checkpoint_folder, 'best-epoch=4.ckpt')
 
     # set this to false when submitting batch script, otherwise it prints a lot of lines
-    show_progress_bar = True
+    show_progress_bar = False
 
 if not os.path.exists(args.figPath):
     os.makedirs(args.figPath, exist_ok=True)
@@ -214,11 +214,9 @@ train_raw_predictions, train_index = tft.predict(
     train_dataloader, return_index=True, show_progress_bar=args.show_progress_bar
 )
 
-train_predictions = upscale_prediction(targets, train_raw_predictions, target_scaler, max_prediction_length)
-train_result_merged = processor.align_result_with_dataset(train_data, train_predictions, train_index)
-show_result(train_result_merged, targets)
-
-plotter.summed_plot(train_result_merged, type='Train_error', plot_error=True, save=False)
+train_predictions = upscale_prediction(
+    targets, train_raw_predictions, target_scaler, max_prediction_length
+)
 gc.collect()
 
 # %% [markdown]
@@ -272,10 +270,13 @@ for delta in delta_values:
         new_predictions = tft.predict(
             dataloader, show_progress_bar=args.show_progress_bar
         )
+        new_predictions = upscale_prediction(
+            targets, new_predictions, target_scaler, max_prediction_length
+        )
 
         # sum up the change in prediction
         prediction_change = np.sum([
-            (train_raw_predictions[target_index] - new_predictions[target_index]).abs().numpy() 
+            abs(train_predictions[target_index] - new_predictions[target_index])
                 for target_index in range(len(targets)) 
         ])
         mu_star = prediction_change / (data.shape[0]*delta)
