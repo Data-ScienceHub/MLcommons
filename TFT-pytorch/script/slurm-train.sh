@@ -1,40 +1,20 @@
 #!/usr/bin/env bash
-#SBATCH --job-name="total_target_cleaned_scaled"
-#SBATCH --output=total_target_cleaned_scaled.out
+#SBATCH --job-name="total"
+#SBATCH --output=outputs/train.out
 #SBATCH --partition=gpu
 #SBATCH --time=1:00:00
-#SBATCH --gres=gpu:1
-#---SBATCH --nodelist=lynx01
+#SBATCH --account=ds--6013
+#SBATCH --gres=gpu:v100:1
 #SBATCH --mem=32GB
 
 source /etc/profile.d/modules.sh
 source ~/.bashrc
 
-module load cuda-toolkit cudnn anaconda3
+# this is for when you are using singularity
+module load cuda cudnn singularity
+singularity run --nv ../tft_pytorch.sif python train.py
 
-conda deactivate
-conda activate ml
-
-python train.py
-
-## The following is for UVA Rivanna servers
-## Note that there are some differences from the CS server script above
-## It doesn't have same gpu models as Rivanna.
-## cuda-toolkit and anaconda3 instead of cuda and anaconda
-## doesn't require library path exporting
-
-# #!/usr/bin/env bash
-# #SBATCH --job-name="total_target_cleaned_scaled"
-# #SBATCH --output=total_target_cleaned_scaled.out
-# #SBATCH --partition=gpu
-# #SBATCH --time=1:00:00
-# #SBATCH --gres=gpu:v100:1
-# #SBATCH --account=ds6011-sp22-002
-# #SBATCH --mem=24GB
-
-# source /etc/profile.d/modules.sh
-# source ~/.bashrc
-
+# # this is for when you have a working virtual env
 # module load cuda cudnn anaconda
 
 # conda deactivate

@@ -7,6 +7,19 @@ This work combines sensitivity analysis with heterogeneous time-series deep lear
 * **dataset_raw**: Contains the collected raw dataset and the supporting files. To update use the [Update dataset](/dataset_raw/Update%20dataset.ipynb) notebook.
 * **TFT-PyTorch**: Contains all codes and merged feature files used during the TFT experimentation setup and interpretation. For more details, check the [README.md](/TFT-PyTorch/README.md) file inside it. The primary results are highlighted in [results.md](/TFT-PyTorch/results.md). 
 
+## How to Reproduce
+
+### Singularity
+You can either pull the singularity container from remote library
+```bash
+singularity pull tft_pytorch.sif library://khairulislam/collection/tft_pytorch:latest
+```
+Or create the container locally using the [singularity.def](/TFT-pytorch/singularity.def) file. Execute the following command. This uses the definition file to create the container from scratch. Note that is uses `sudo` and requires root privilege.
+
+```bash
+sudo singularity build singularity.sif singularity.def
+```
+
 
 ## Features
 
