@@ -2,7 +2,8 @@
 ### Jan 29 - Feb 4
 - Run through notebook and replicate previous model
 ### Feb 5 - Feb 11 
-- Overview and design of feature selection, analysis
+- Overview and design of feature selection
+- 
 ### Feb 12 - Feb 18
 - Refine experiments
 ### Feb 19 - Feb 25
