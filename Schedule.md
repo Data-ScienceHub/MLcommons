@@ -6,7 +6,7 @@
 ### Feb 12 - Feb 18
 - Refine experiments
 ### Feb 19 - Feb 25
-- Refine experiements
+- Refine experiments
 ## Part 2: Focus on feature slection, model building, and analysis. Feature importance
 ### Feb 26 - Mar 4
 - Experiment, focus on feature anlaysis and interpretibility 
