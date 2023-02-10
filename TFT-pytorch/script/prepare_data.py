@@ -16,24 +16,11 @@ sys.path.append( '..' )
 # %% [markdown]
 # # Setup storage
 # 
-# You would need the `CovidOct-2022` and `Support files` folders for the dateset. And the `TFT-pytorch` folder for the codes. Upload both of them in the place where you are running the code from. My folder structure looks like this
+# You would need the `CovidMay17-2022` and `Support files` folders for the dateset. And the `TFT-pytorch` folder for the codes. Upload both of them in the place where you are running the code from. My folder structure looks like this
 # * dataset_raw
 #     * CovidMay17-2022
 #     * Support files
 # * TFT-pytorch
-
-# %% [markdown]
-# ## Googe drive
-# Not needed, since you can run this on CPU. But set `running_on_colab = True` if using. Also update the `cd` path so that it points to the notebook folder in your drive.
-
-# %%
-running_on_colab = False
-
-# if running_on_colab:
-#     from google.colab import drive
-#     drive.mount('/content/drive')
-
-#     %cd /content/drive/My Drive/Projects/Covid/TFT-pytorch/notebooks
 
 # %% [markdown]
 # ## Input
@@ -46,13 +33,13 @@ from Class.DataMerger import *
 @dataclass
 class args:
     # folder where the cleaned feature file are at
-    dataPath = '../../dataset_raw/CovidDec30-2022'
+    dataPath = '../../dataset_raw/CovidMay17-2022'
     supportPath = '../../dataset_raw/Support files'
-    configPath = '../config_2022_Dec.json'
-    cachePath = None # '../2022_May_cleaned/Total.csv'
+    configPath = '../config_2022_May.json'
+    cachePath = None # '../2022_Oct/Total.csv'
 
     # choose this carefully
-    outputPath = '../2022_Dec_cleaned/'
+    outputPath = '../2022_May_cleaned/'
 
 # %%
 # create output path if it doesn't exist
@@ -80,7 +67,7 @@ dataMerger = DataMerger(config, args.dataPath, args.supportPath)
 
 # %%
 # if you have already created the total df one, and now just want to 
-# reuse it to create different population cut
+# reuse it to create different population or rurality cut
 if args.cachePath:
     total_df = pd.read_csv(args.cachePath)
 else:
@@ -88,7 +75,7 @@ else:
     
     output_path_total = os.path.join(args.outputPath, 'Total.csv') 
     print(f'Writing total data to {output_path_total}\n')
-    
+
     # rounding up to reduce the file size
     total_df.round(4).to_csv(output_path_total, index=False)
 
@@ -108,4 +95,6 @@ if dataMerger.need_population_cut():
         output_path_population_cut = os.path.join(args.outputPath, filename)
 
         print(f'Writing top {top_counties} populated counties data to {output_path_population_cut}.')
-        population_cuts[index].round(3).to_csv(output_path_population_cut, index=False)
+        population_cuts[index].round(4).to_csv(output_path_population_cut, index=False)
+
+
