@@ -10,7 +10,9 @@
 - Refine experiments
 ## Part 2: Focus on feature slection, model building, and analysis. Feature importance
 ### Feb 26 - Mar 4
-- Experiment, focus on feature anlaysis and interpretibility 
+- Experiment
+- Decide which features to test and concurrently research literature to find ground truth. 
+- Smoking, existing health conditons, 
 ### Mar 5 - Mar 11
 - Spring Break
 ### Mar 12 -18
