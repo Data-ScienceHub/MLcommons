@@ -12,7 +12,7 @@
 ### Feb 26 - Mar 4
 - Experiment
 - Decide which features to test and concurrently research literature to find ground truth. 
-- Smoking, existing health conditons, 
+- Smoking, existing health conditons, income by population density
 ### Mar 5 - Mar 11
 - Spring Break
 ### Mar 12 -18
