@@ -1,4 +1,4 @@
-5-digit FIPS Code,Poor or fair health raw value,Adult obesity raw value,Physical inactivity raw value,Diabetes prevalence raw value,Food insecurity raw value
+FIPS,Poor or fair health,Adult obesity,Physical inactivity,Diabetes prevalence,Food insecurity
 1001,0.198391789,0.33,0.306,0.127,0.156
 1003,0.164606753,0.3,0.247,0.103,0.129
 1005,0.298414999,0.412,0.28,0.175,0.219
