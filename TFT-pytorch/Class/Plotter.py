@@ -87,7 +87,7 @@ class PlotResults:
         else:
             plt.legend(framealpha=0.3, edgecolor="black", ncol=2, loc='best')
             
-        fig.tight_layout()
+        # fig.tight_layout() # might change the y axis unexpectedly
 
         if figure_name is not None:
             plt.savefig(os.path.join(self.figPath, figure_name), dpi=DPI)
@@ -193,7 +193,7 @@ class PlotWeights:
         ax.set_title(title)
 
         ax.set_xlabel("Importance in %")
-        fig.tight_layout()
+        # fig.tight_layout() # might change the y axis unexpectedly
 
         if self.show:
             plt.show()
@@ -256,7 +256,7 @@ class PlotWeights:
         if title is not None: ax.set_title(title)
         plt.gca().yaxis.set_major_formatter(self.weight_formatter)
         ax.xaxis.set_major_locator(MultipleLocator(base=1))
-        fig.tight_layout()
+        # fig.tight_layout() # might change the y axis unexpectedly
 
         if figure_name is not None:
             plt.savefig(os.path.join(self.figPath, figure_name), dpi=DPI)
@@ -347,7 +347,7 @@ class PlotWeights:
         if limit != 0:
             plt.legend()
 
-        fig.tight_layout()
+        # fig.tight_layout() # might change the y axis unexpectedly
 
         if figure_name is not None: 
             plt.savefig(os.path.join(self.figPath, f'{figure_name}.jpg'), dpi=DPI)
@@ -397,7 +397,7 @@ class PlotWeights:
         plt.gca().yaxis.set_major_formatter(self.weight_formatter)
         plt.legend()
 
-        fig.tight_layout()
+        # fig.tight_layout() # might change the y axis unexpectedly
 
         if figure_name is not None:
             plt.savefig(os.path.join(self.figPath, f'{figure_name}.jpg'), dpi=DPI)
