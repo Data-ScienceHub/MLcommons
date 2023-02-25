@@ -5,7 +5,7 @@ This work combines sensitivity analysis with heterogeneous time-series deep lear
 
 ## Folder Structure
 * **dataset_raw**: Contains the collected raw dataset and the supporting files. To update use the [Update dynamic dataset](/dataset_raw/Update%20dynamic%20features.ipynb) notebook. Static dataset is already update till the onset of COVID-19 using [Update static dataset](/dataset_raw/Update%20static%20features.ipynb) notebook.
-* **TFT-PyTorch**: Contains all codes and merged feature files used during the TFT experimentation setup and interpretation. For more details, check the [README.md](/TFT-PyTorch/README.md) file inside it. The primary results are highlighted in [results.md](/TFT-PyTorch/results.md). 
+* **TFT-pytorch**: Contains all codes and merged feature files used during the TFT experimentation setup and interpretation. For more details, check the [README.md](/TFT-pytorch/README.md) file inside it. The primary results are highlighted in [results.md](/TFT-pytorch/results.md). 
 
 
 ## How to Reproduce
