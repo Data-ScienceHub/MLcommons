@@ -61,7 +61,7 @@ from dataclasses import dataclass
 
 @dataclass
 class args:
-    result_folder = '../scratch/TFT_baseline/' 
+    result_folder = '../results/TFT_baseline/' 
     figPath = os.path.join(result_folder, 'figures_morris')
     checkpoint_folder = os.path.join(result_folder, 'checkpoints')
     input_filePath = '../2022_May_cleaned/Top_100.csv'
@@ -275,8 +275,12 @@ for delta in delta_values:
         )
 
         # sum up the change in prediction
+        # prediction_change = np.sum([
+        #     abs(train_predictions[target_index] - new_predictions[target_index])
+        #         for target_index in range(len(targets)) 
+        # ])
         prediction_change = np.sum([
-            abs(train_predictions[target_index] - new_predictions[target_index])
+            (new_predictions[target_index] - train_predictions[target_index])
                 for target_index in range(len(targets)) 
         ])
         mu_star = prediction_change / (data.shape[0]*delta)
