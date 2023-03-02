@@ -1,0 +1,64 @@
+cuda
+Started at 2023-02-28 21:49:00.967433
+(2541878, 14)
+Static features ['UNDER5', 'AGE517', 'AGE1829', 'AGE3039', 'AGE4049', 'AGE5064', 'AGE6574', 'AGE75PLUS'].   Choosing feature AGE1829.
+There are 3142 unique counties in the dataset.
+Train samples 2001454, validation samples 87976, test samples 87976
+637 days of training, 15 days of validation data, 15 days of test data.
+Scaling static and dynamic input features: ['AGE1829', 'VaccinationFull']
+Scaling targets ['Cases']
+Number of parameters in network: 16.5k
+
+---Training results--
+
+Delta -0.001.
+Feature AGE1829, mu_star -2.5126e-05, sensitivity -1.9759e-06
+Feature VaccinationFull, mu_star -0.00044991, sensitivity -8.3399e-05
+
+Delta -0.0008.
+Feature AGE1829, mu_star -3.4191e-05, sensitivity -2.6889e-06
+Feature VaccinationFull, mu_star -0.00045574, sensitivity -8.448e-05
+
+Delta -0.0006.
+Feature AGE1829, mu_star -2.7427e-05, sensitivity -2.1569e-06
+Feature VaccinationFull, mu_star -0.00047231, sensitivity -8.7551e-05
+
+Delta -0.0004.
+Feature AGE1829, mu_star -4.3184e-05, sensitivity -3.3961e-06
+Feature VaccinationFull, mu_star -0.00046002, sensitivity -8.5273e-05
+
+Delta -0.0002.
+Feature AGE1829, mu_star -5.1468e-05, sensitivity -4.0475e-06
+Feature VaccinationFull, mu_star -0.00047498, sensitivity -8.8046e-05
+
+Delta 0.0002.
+Feature AGE1829, mu_star -2.7918e-05, sensitivity -2.1955e-06
+Feature VaccinationFull, mu_star -0.00051334, sensitivity -9.5157e-05
+
+Delta 0.0004.
+Feature AGE1829, mu_star -3.1101e-05, sensitivity -2.4458e-06
+Feature VaccinationFull, mu_star -0.00049394, sensitivity -9.1561e-05
+
+Delta 0.0006.
+Feature AGE1829, mu_star -3.2662e-05, sensitivity -2.5686e-06
+Feature VaccinationFull, mu_star -0.00048529, sensitivity -8.9956e-05
+
+Delta 0.0008.
+Feature AGE1829, mu_star -3.2758e-05, sensitivity -2.5761e-06
+Feature VaccinationFull, mu_star -0.00047131, sensitivity -8.7366e-05
+
+Delta 0.001.
+Feature AGE1829, mu_star -2.8808e-05, sensitivity -2.2655e-06
+Feature VaccinationFull, mu_star -0.00047208, sensitivity -8.7507e-05
+
+-0.001
+-0.0008
+-0.0006
+-0.0004
+-0.0002
+0.0002
+0.0004
+0.0006
+0.0008
+0.001
+Ended at 2023-03-01 06:46:22.233033. Elapsed time 8:57:21.265611
