@@ -1,0 +1,64 @@
+cuda
+Started at 2023-02-28 22:40:41.522145
+(2541878, 14)
+Static features ['UNDER5', 'AGE517', 'AGE1829', 'AGE3039', 'AGE4049', 'AGE5064', 'AGE6574', 'AGE75PLUS'].   Choosing feature AGE5064.
+There are 3142 unique counties in the dataset.
+Train samples 2001454, validation samples 87976, test samples 87976
+637 days of training, 15 days of validation data, 15 days of test data.
+Scaling static and dynamic input features: ['AGE5064', 'VaccinationFull']
+Scaling targets ['Cases']
+Number of parameters in network: 16.5k
+
+---Training results--
+
+Delta -0.001.
+Feature AGE5064, mu_star 9.77e-06, sensitivity 8.3061e-07
+Feature VaccinationFull, mu_star -0.00026414, sensitivity -4.8963e-05
+
+Delta -0.0008.
+Feature AGE5064, mu_star 1.1926e-05, sensitivity 1.0139e-06
+Feature VaccinationFull, mu_star -0.0002708, sensitivity -5.0198e-05
+
+Delta -0.0006.
+Feature AGE5064, mu_star 4.3919e-05, sensitivity 3.7339e-06
+Feature VaccinationFull, mu_star -0.00027528, sensitivity -5.1029e-05
+
+Delta -0.0004.
+Feature AGE5064, mu_star 4.1446e-05, sensitivity 3.5236e-06
+Feature VaccinationFull, mu_star -0.00026389, sensitivity -4.8917e-05
+
+Delta -0.0002.
+Feature AGE5064, mu_star -6.5041e-07, sensitivity -5.5296e-08
+Feature VaccinationFull, mu_star -0.00028971, sensitivity -5.3702e-05
+
+Delta 0.0002.
+Feature AGE5064, mu_star -1.2479e-05, sensitivity -1.061e-06
+Feature VaccinationFull, mu_star -0.00017101, sensitivity -3.17e-05
+
+Delta 0.0004.
+Feature AGE5064, mu_star -2.767e-05, sensitivity -2.3524e-06
+Feature VaccinationFull, mu_star -0.00019422, sensitivity -3.6002e-05
+
+Delta 0.0006.
+Feature AGE5064, mu_star -3.5246e-05, sensitivity -2.9965e-06
+Feature VaccinationFull, mu_star -0.00021107, sensitivity -3.9125e-05
+
+Delta 0.0008.
+Feature AGE5064, mu_star -7.865e-05, sensitivity -6.6866e-06
+Feature VaccinationFull, mu_star -0.00021862, sensitivity -4.0525e-05
+
+Delta 0.001.
+Feature AGE5064, mu_star -4.8727e-05, sensitivity -4.1427e-06
+Feature VaccinationFull, mu_star -0.00021742, sensitivity -4.0303e-05
+
+-0.001
+-0.0008
+-0.0006
+-0.0004
+-0.0002
+0.0002
+0.0004
+0.0006
+0.0008
+0.001
+Ended at 2023-03-01 08:35:33.250686. Elapsed time 9:54:51.728554

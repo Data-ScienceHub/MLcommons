@@ -1,0 +1,64 @@
+cuda
+Started at 2023-03-02 12:53:55.121615
+(2541878, 14)
+Static features ['UNDER5', 'AGE517', 'AGE1829', 'AGE3039', 'AGE4049', 'AGE5064', 'AGE6574', 'AGE75PLUS'].   Choosing feature UNDER5.
+There are 3142 unique counties in the dataset.
+Train samples 2001454, validation samples 87976, test samples 87976
+637 days of training, 15 days of validation data, 15 days of test data.
+Scaling static and dynamic input features: ['UNDER5', 'VaccinationFull']
+Scaling targets ['Cases']
+Number of parameters in network: 16.5k
+
+---Training results--
+
+Delta 2e-06.
+Feature UNDER5, mu_star 3.8119e-05, sensitivity 3.2237e-06
+Feature VaccinationFull, mu_star 0.020056, sensitivity 0.0037178
+
+Delta 4e-06.
+Feature UNDER5, mu_star 4.1931e-05, sensitivity 3.546e-06
+Feature VaccinationFull, mu_star 0.010339, sensitivity 0.0019164
+
+Delta 6e-06.
+Feature UNDER5, mu_star 3.8755e-05, sensitivity 3.2774e-06
+Feature VaccinationFull, mu_star 0.0070209, sensitivity 0.0013014
+
+Delta 8e-06.
+Feature UNDER5, mu_star 0.0078903, sensitivity 0.00066727
+Feature VaccinationFull, mu_star 0.0053617, sensitivity 0.00099387
+
+Delta 1e-05.
+Feature UNDER5, mu_star 0.022098, sensitivity 0.0018688
+Feature VaccinationFull, mu_star 0.0043698, sensitivity 0.00081001
+
+Delta 2e-05.
+Feature UNDER5, mu_star 0.011069, sensitivity 0.00093611
+Feature VaccinationFull, mu_star 0.0090631, sensitivity 0.00168
+
+Delta 4e-05.
+Feature UNDER5, mu_star 0.0061047, sensitivity 0.00051626
+Feature VaccinationFull, mu_star 0.0047284, sensitivity 0.00087649
+
+Delta 6e-05.
+Feature UNDER5, mu_star 0.0046, sensitivity 0.00038901
+Feature VaccinationFull, mu_star 0.0032826, sensitivity 0.00060849
+
+Delta 8e-05.
+Feature UNDER5, mu_star 0.0048463, sensitivity 0.00040984
+Feature VaccinationFull, mu_star 0.0025582, sensitivity 0.0004742
+
+Delta 0.0001.
+Feature UNDER5, mu_star 0.0038852, sensitivity 0.00032857
+Feature VaccinationFull, mu_star 0.0036514, sensitivity 0.00067685
+
+2e-06
+4e-06
+6e-06
+8e-06
+1e-05
+2e-05
+4e-05
+6e-05
+8e-05
+0.0001
+Ended at 2023-03-02 18:58:23.789740. Elapsed time 6:04:28.668146

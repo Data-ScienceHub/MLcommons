@@ -1,0 +1,47 @@
+cuda
+(2541878, 14)
+Static features ['UNDER5', 'AGE517', 'AGE1829', 'AGE3039', 'AGE4049', 'AGE5064', 'AGE6574', 'AGE75PLUS'].   Choosing feature AGE5064.
+There are 3142 unique counties in the dataset.
+Train samples 2001454, validation samples 87976, test samples 87976
+637 days of training, 15 days of validation data, 15 days of test data.
+Scaling static and dynamic input features: ['AGE5064', 'VaccinationFull']
+Scaling targets ['Cases']
+Number of parameters in network: 16.5k
+
+----Training started at 2023-02-28 12:39:48.574088----
+
+
+----Training ended at 2023-02-28 16:12:47.665292, elapsed time 3:32:59.091204
+Best model by validation loss saved at /home/xje4cy/MLcommons/TFT-pytorch-AgeGroups/results/AGE5064/checkpoints/best-epoch=2.ckpt
+Creating folder ../results/AGE5064/figures
+Loading best model from /home/xje4cy/MLcommons/TFT-pytorch-AgeGroups/results/AGE5064/checkpoints/best-epoch=2.ckpt
+
+---Training prediction--
+
+
+Train raw prediction shapes
+
+prediction list of length 1 torch.Size([1916608, 15, 1])
+encoder_attention torch.Size([1916608, 15, 4, 13])
+decoder_attention torch.Size([1916608, 15, 4, 15])
+static_variables torch.Size([1916608, 1, 1])
+encoder_variables torch.Size([1916608, 13, 1, 3])
+decoder_variables torch.Size([1916608, 15, 1, 1])
+decoder_lengths torch.Size([1916608])
+encoder_lengths torch.Size([1916608])
+
+---Training results--
+
+Target Cases, MAE 10.237, RMSE 56.705, RMSLE 0.85534, SMAPE 0.66794. NNSE 0.84504.
+
+
+---Validation results--
+
+Target Cases, MAE 18.561, RMSE 82.534, RMSLE 1.2205, SMAPE 0.8176. NNSE 0.74457.
+
+
+---Test results--
+
+Target Cases, MAE 30.444, RMSE 200.37, RMSLE 1.2723, SMAPE 0.80864. NNSE 0.66808.
+
+Ended at 2023-02-28 16:35:49.807443. Elapsed time 3:56:01.233378
