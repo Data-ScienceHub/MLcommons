@@ -1,0 +1,114 @@
+cuda
+Started at 2023-03-13 22:40:55.715317
+(2541878, 14)
+Static features ['UNDER5', 'AGE517', 'AGE1829', 'AGE3039', 'AGE4049', 'AGE5064', 'AGE6574', 'AGE75PLUS'].   Choosing feature AGE5064.
+There are 3142 unique counties in the dataset.
+Train samples 2001454, validation samples 87976, test samples 87976
+637 days of training, 15 days of validation data, 15 days of test data.
+Scaling static and dynamic input features: ['AGE5064', 'VaccinationFull']
+Scaling targets ['Cases']
+Number of parameters in network: 16.5k
+
+---Training results--
+
+Delta -0.01.
+Feature AGE5064, mu_star -7.574e-06, sensitivity -6.4392e-07
+Feature VaccinationFull, mu_star -0.00014053, sensitivity -2.605e-05
+
+Delta -0.009.
+Feature AGE5064, mu_star -6.9527e-06, sensitivity -5.911e-07
+Feature VaccinationFull, mu_star -0.00013305, sensitivity -2.4663e-05
+
+Delta -0.008.
+Feature AGE5064, mu_star -1.1939e-05, sensitivity -1.015e-06
+Feature VaccinationFull, mu_star -0.00013323, sensitivity -2.4697e-05
+
+Delta -0.007.
+Feature AGE5064, mu_star -1.5989e-05, sensitivity -1.3593e-06
+Feature VaccinationFull, mu_star -0.00013087, sensitivity -2.4259e-05
+
+Delta -0.006.
+Feature AGE5064, mu_star -8.2466e-06, sensitivity -7.011e-07
+Feature VaccinationFull, mu_star -0.00025019, sensitivity -4.6376e-05
+
+Delta -0.005.
+Feature AGE5064, mu_star -6.7903e-06, sensitivity -5.7729e-07
+Feature VaccinationFull, mu_star -0.00024431, sensitivity -4.5287e-05
+
+Delta -0.004.
+Feature AGE5064, mu_star -8.3376e-06, sensitivity -7.0884e-07
+Feature VaccinationFull, mu_star -0.00024417, sensitivity -4.5261e-05
+
+Delta -0.003.
+Feature AGE5064, mu_star 4.0276e-06, sensitivity 3.4242e-07
+Feature VaccinationFull, mu_star -0.00024407, sensitivity -4.5242e-05
+
+Delta -0.002.
+Feature AGE5064, mu_star 1.0054e-05, sensitivity 8.548e-07
+Feature VaccinationFull, mu_star -0.00025714, sensitivity -4.7665e-05
+
+Delta -0.001.
+Feature AGE5064, mu_star 9.77e-06, sensitivity 8.3061e-07
+Feature VaccinationFull, mu_star -0.00026414, sensitivity -4.8963e-05
+
+Delta 0.001.
+Feature AGE5064, mu_star -4.8727e-05, sensitivity -4.1427e-06
+Feature VaccinationFull, mu_star -0.00021742, sensitivity -4.0303e-05
+
+Delta 0.002.
+Feature AGE5064, mu_star -1.9059e-05, sensitivity -1.6203e-06
+Feature VaccinationFull, mu_star -0.00022913, sensitivity -4.2473e-05
+
+Delta 0.003.
+Feature AGE5064, mu_star -1.7102e-05, sensitivity -1.4539e-06
+Feature VaccinationFull, mu_star -0.00023725, sensitivity -4.3979e-05
+
+Delta 0.004.
+Feature AGE5064, mu_star -1.3134e-05, sensitivity -1.1166e-06
+Feature VaccinationFull, mu_star -0.00022976, sensitivity -4.2591e-05
+
+Delta 0.005.
+Feature AGE5064, mu_star -3.0739e-06, sensitivity -2.6134e-07
+Feature VaccinationFull, mu_star -0.00022172, sensitivity -4.1099e-05
+
+Delta 0.006.
+Feature AGE5064, mu_star -6.7507e-06, sensitivity -5.7392e-07
+Feature VaccinationFull, mu_star -0.00022397, sensitivity -4.1517e-05
+
+Delta 0.007.
+Feature AGE5064, mu_star -3.5546e-06, sensitivity -3.022e-07
+Feature VaccinationFull, mu_star -0.00021225, sensitivity -3.9344e-05
+
+Delta 0.008.
+Feature AGE5064, mu_star -3.9353e-06, sensitivity -3.3457e-07
+Feature VaccinationFull, mu_star -0.00020032, sensitivity -3.7132e-05
+
+Delta 0.009.
+Feature AGE5064, mu_star -5.3995e-06, sensitivity -4.5905e-07
+Feature VaccinationFull, mu_star -0.00034855, sensitivity -6.461e-05
+
+Delta 0.01.
+Feature AGE5064, mu_star -3.2793e-06, sensitivity -2.7879e-07
+Feature VaccinationFull, mu_star -0.00033815, sensitivity -6.2681e-05
+
+-0.01
+-0.009
+-0.008
+-0.007
+-0.006
+-0.005
+-0.004
+-0.003
+-0.002
+-0.001
+0.001
+0.002
+0.003
+0.004
+0.005
+0.006
+0.007
+0.008
+0.009
+0.01
+Ended at 2023-03-14 16:14:37.394163. Elapsed time 17:33:41.678858
