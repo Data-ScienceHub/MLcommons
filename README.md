@@ -35,10 +35,6 @@ Note that, past values target and known futures are also used as observed inputs
 | Feature        | Type       |
 |:------------------------:|:------------:|
 | Age Distribution       | Static     |
-| Health Disparities     | Static     |
-| Disease Spread         | Dynamic    |
-| Social Distancing      | Dynamic    |
-| Transmissible Cases    | Dynamic    |
 | Vaccination Full Dose   | Dynamic    |
 | SinWeekly | Known Future |
 | CosWeekly | Known Future | 
