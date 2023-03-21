@@ -26,7 +26,7 @@ Or create the container locally using the [singularity.def](/TFT-pytorch/singula
 sudo singularity build singultft_pytorchatft_pytorchrity.sif singularity.def
 ```
 
-## Features
+## Input Features
 
 Note that, past values target and known futures are also used as observed inputs by TFT.
 
