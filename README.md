@@ -34,7 +34,7 @@ Note that, past values target and known futures are also used as observed inputs
 
 | Feature        | Type       |
 |:------------------------:|:------------:|
-| Age Distribution       | Static     |
+| Age Group               | Static     |
 | Vaccination Full Dose   | Dynamic    |
 | SinWeekly | Known Future |
 
@@ -58,7 +58,7 @@ Note that, past values target and known futures are also used as observed inputs
 <td colspan="5"><strong>Age Distribution</strong></td>
 </tr>
 <tr>
-<td>% age 65 and over</td>
+<td>Age Group</td>
 <td>Static</td>
 <td style="background: #9A42C8;"></td>
 <td>Percent of people in the age group 0-4, 5-17, 18-29, 30-39, 40-49, 50-59, 60-74, or 75+ from 2016-2020 American Community Survey (ACS).</td>
