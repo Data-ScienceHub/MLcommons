@@ -40,7 +40,7 @@ Note that, past values target and known futures are also used as observed inputs
 
 </div>
 
-<h2 class="accordion-toggle accordion-toggle-icon">Details of Features in May 17, 2022 data update</h4>
+<h2 class="accordion-toggle accordion-toggle-icon">Details of Input Features</h4>
 <div class="accordion-content">
 <table class="pop_up_table">
 <thead>
