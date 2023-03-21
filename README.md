@@ -71,7 +71,7 @@ Note that, past values target and known futures are also used as observed inputs
 <tr>
 <td>Series_Complete_Pop_Pct</td>
 <td>Daily</td>
-
+<td style="background: #4258C9;"></td>
 <td> Percent of people who are fully vaccinated (have second dose of a two-dose vaccine or one dose of a single-dose vaccine) based on the jurisdiction and county where recipient lives.</td>
 <td><span><a href="https://www.unacast.com/covid19/social-distancing-scoreboard" target="_blank">CDC</a></span></td>
 </tr>
