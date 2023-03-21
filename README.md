@@ -61,7 +61,7 @@ Note that, past values target and known futures are also used as observed inputs
 <td>% age 65 and over</td>
 <td>Static</td>
 <td style="background: #9A42C8;"></td>
-<td><em>Percent of people in the age group 0-4, 5-17, 18-29, 30-39, 40-49, 50-59, 60-74, or 75+ from 2016-2020 American Community Survey (ACS)</em>.</td>
+<td>Percent of people in the age group 0-4, 5-17, 18-29, 30-39, 40-49, 50-59, 60-74, or 75+ from 2016-2020 American Community Survey (ACS).</td>
 <td><span><a href="https://svi.cdc.gov/data-and-tools-download.html" target="_blank">2020 SVI</a></span></td>
 </tr>
 
