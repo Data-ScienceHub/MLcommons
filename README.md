@@ -55,7 +55,7 @@ Note that, past values target and known futures are also used as observed inputs
 <tbody>
 
 <tr>
-<td colspan="5"><strong>Age Distribution</strong></td>
+<td colspan="4"><strong>Age Distribution</strong></td>
 </tr>
 <tr>
 <td>Age Group</td>
@@ -66,7 +66,7 @@ Note that, past values target and known futures are also used as observed inputs
 </tr>
 
 <tr>
-<td colspan="5"><strong>Vaccination Full Dose</strong></td>
+<td colspan="4"><strong>Vaccination Full Dose</strong></td>
 </tr>
 <tr>
 <td>Series_Complete_Pop_Pct</td>
