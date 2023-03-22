@@ -12,7 +12,7 @@ source ~/.bashrc
 
 # this is for when you are using singularity
 module load cuda cudnn singularity
-singularity run --nv ../tft_pytorch.sif python train.py
+singularity run --nv ../tft_pytorch.sif python train.py --config=baseline.json --output=../scratch/TFT_baseline
 
 # # this is for when you have a working virtual env
 # module load cuda cudnn anaconda

@@ -7,6 +7,7 @@
 # # Imports
 
 # %%
+# python .\train.py --config=baseline.json --output=../scratch/total
 import os, gc
 import torch
 
@@ -24,26 +25,7 @@ pd.set_option('display.max_columns', None)
 
 # %%
 device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
-print(device)
-
-# %% [markdown]
-# ## Google colab
-# 
-# Set `running_on_colab` to true if you are running on google colab. They don't have these libraries installed by default. Uncomment the codes too if needed. They might be commented out since in .py script inline commands show errors.
-# 
-# Use only the pip install part if you are on rivanna, using a default tensorflow kernel.
-
-# %%
-running_on_colab = False
-
-# if running_on_colab:
-#     !pip install pytorch_lightning
-#     !pip install pytorch_forecasting
-
-#     from google.colab import drive
-
-#     drive.mount('/content/drive')
-#     %cd /content/drive/My Drive/TFT-pytorch/notebook
+print(f'Using {device} backend.')
 
 # %% [markdown]
 # ## Pytorch lightning and forecasting
@@ -62,26 +44,47 @@ from pytorch_forecasting.metrics import RMSE, MultiLoss
 
 # %%
 from dataclasses import dataclass
+from argparse import ArgumentParser
+
+parser = ArgumentParser(description='Train TFT model')
+
+parser.add_argument(
+   '--config', default='baseline.json',
+   help='config filename in the configurations folder'
+)
+
+parser.add_argument(
+   '--input_file', help='path of the input feature file',
+   default='../2022_May_cleaned/Total.csv'
+)
+parser.add_argument(
+   '--output', default='../scratch/TFT_baseline',
+   help='output result folder. Anything written in the scratch folder will be ignored by Git.'
+)
+parser.add_argument(
+   '--show-progress', default=False, type=bool,
+   help='show the progress bar.'
+)
+arguments = parser.parse_args()
 
 @dataclass
 class args:
-    result_folder = '../scratch/total/'
+    result_folder = arguments.output
     figPath = os.path.join(result_folder, 'figures')
     checkpoint_folder = os.path.join(result_folder, 'checkpoints')
-    input_filePath = '../2022_May_cleaned/Total.csv'
+    input_filePath = arguments.input_file
 
     # pass your intented configuration here
     # input features are always normalized. But keeping the targets features unscaled improves results
     # if you want to change some config, but not to create a new config file, just change the value
     # of the corresponding parameter in the config section
-    configPath = '../configurations/baseline.json'
-    # configPath = '../config_2022_Aug.json'
+    configPath = os.path.join('../configurations', arguments.config)
 
     # Path/URL of the checkpoint from which training is resumed
     ckpt_model_path = None # os.path.join(checkpoint_folder, 'latest-epoch=7.ckpt')
     
     # set this to false when submitting batch script, otherwise it prints a lot of lines
-    show_progress_bar = False
+    show_progress_bar = arguments.show_progress
 
     # interpret_output has high memory requirement
     # results in out-of-memery for Total.csv and a model of hidden size 64, even with 64GB memory
@@ -111,13 +114,6 @@ parameters = Parameters(config, **config)
 targets = parameters.data.targets
 time_idx = parameters.data.time_idx
 tft_params = parameters.model_parameters
-
-# google colab doesn't utilize GPU properly for pytorch
-# so increasing batch size forces more utilization
-# not needed on rivanna or your local machine
-
-if running_on_colab: 
-    tft_params.batch_size *= 4
 
 max_prediction_length = tft_params.target_sequence_length
 max_encoder_length = tft_params.input_sequence_length
@@ -365,11 +361,14 @@ gc.collect()
 print(f'\n---Test results--\n')
 
 test_raw_predictions, test_index = tft.predict(
-    test_dataloader, mode="raw", return_index=True, show_progress_bar=args.show_progress_bar
+    test_dataloader, mode="raw", return_index=True, 
+    show_progress_bar=args.show_progress_bar
 )
 test_predictions = upscale_prediction(targets, test_raw_predictions['prediction'], target_scaler, max_prediction_length)
 
-test_result_merged = processor.align_result_with_dataset(total_data, test_predictions, test_index)
+test_result_merged = processor.align_result_with_dataset(
+    total_data, test_predictions, test_index
+)
 show_result(test_result_merged, targets)
 plotter.summed_plot(test_result_merged, 'Test')
 gc.collect()
@@ -380,7 +379,9 @@ gc.collect()
 # %%
 for day in range(1, max_prediction_length+1):
     print(f'Day {day}')
-    df = processor.align_result_with_dataset(test_data, test_predictions, test_index, target_time_step = day)
+    df = processor.align_result_with_dataset(
+        test_data, test_predictions, test_index, target_time_step = day
+    )
     show_result(df, targets)
     # plotter.summed_plot(df, type=f'Test_day_{day}')
 
@@ -434,7 +435,8 @@ plotWeights = PlotWeights(
 # %%
 if args.interpret_train:
     attention_mean, attention = processor.get_mean_attention(
-        tft.interpret_output(train_raw_predictions), train_index, return_attention=True
+        tft.interpret_output(train_raw_predictions), 
+        train_index, return_attention=True
     )
     plotWeights.plot_attention(
         attention_mean, figure_name='Train_daily_attention', 
@@ -451,26 +453,26 @@ if args.interpret_train:
 # ## Variable importance and mean attention
 
 # %%
+print(f"Variables:\nStatic {tft.static_variables} \nEncoder {tft.encoder_variables} \nDecoder {tft.decoder_variables}.")
+
+# %%
 if args.interpret_train:
     print("Interpreting train predictions")
     interpretation = tft.interpret_output(train_raw_predictions, reduction="mean")
-    for key in interpretation.keys():
-        print(key, interpretation[key])
-
-    figures = plotWeights.plot_interpretation(interpretation)
-    for key in figures.keys():
-        figure = figures[key]
-        figure.savefig(os.path.join(plotter.figPath, f'Train_{key}.jpg'), dpi=DPI)    
 else:
     print("Interpreting test predictions")
     interpretation = tft.interpret_output(test_raw_predictions, reduction="mean")
-    for key in interpretation.keys():
-        print(key, interpretation[key])
-        
-    figures = plotWeights.plot_interpretation(interpretation)
-    for key in figures.keys():
-        figure = figures[key]
-        figure.savefig(os.path.join(plotter.figPath, f'Test_{key}.jpg'), dpi=DPI) 
+
+for key in interpretation.keys():
+    print(key, interpretation[key]/torch.sum(interpretation[key]))
+
+figures = plotWeights.plot_interpretation(interpretation)
+for key in figures.keys():
+    figure = figures[key]
+    if args.interpret_train:
+        figure.savefig(os.path.join(plotter.figPath, f'Train_{key}.jpg'), dpi=DPI) 
+    else:
+        figure.savefig(os.path.join(plotter.figPath, f'Test_{key}.jpg'), dpi=DPI)
 
 # %% [markdown]
 # # End

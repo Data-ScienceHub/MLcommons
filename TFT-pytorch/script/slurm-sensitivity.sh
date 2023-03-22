@@ -12,7 +12,11 @@ source ~/.bashrc
 
 # this is for when you are using singularity
 module load cuda cudnn singularity
-singularity run --nv ../tft_pytorch.sif python sensitivity_analysis.py
+singularity run --nv ../tft_pytorch.sif python sensitivity_analysis.py --output=../results/age_subgroup/AGE1829
+
+# python .\sensitivity_analysis.py --config=age_groups_old.json --input-file=../2022_May_age_groups_old/Top_100.csv --output=../results/age_subgroup_old/AGE019 --show-progress=True
+# python .\sensitivity_analysis.py --config=age_groups.json --input-file=../2022_May_age_groups/Top_100.csv --output=../results/age_subgroup/AGE1829 --show-progress=True
+
 
 # this is for when you have a working virtual env
 # module load cuda-toolkit cudnn anaconda3

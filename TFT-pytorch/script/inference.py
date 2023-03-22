@@ -34,21 +34,42 @@ from pytorch_forecasting.data import GroupNormalizer, MultiNormalizer
 
 # %%
 from dataclasses import dataclass
+from argparse import ArgumentParser
+
+parser = ArgumentParser(description='Inference using a trained TFT model')
+
+parser.add_argument(
+   '--config', default='baseline.json',
+   help='config filename in the configurations folder'
+)
+
+parser.add_argument(
+   '--input_file', help='path of the input feature file',
+   default='../2022_May_cleaned/Top_100.csv'
+)
+parser.add_argument(
+   '--output', default='../scratch/TFT_baseline',
+   help='output result folder. Anything written in the scratch folder will be ignored by Git.'
+)
+parser.add_argument(
+   '--show-progress', default=False, type=bool,
+   help='show the progress bar.'
+)
+arguments = parser.parse_args()
 
 @dataclass
 class args:
-    result_folder = '../results/TFT_baseline'
+    result_folder = arguments.output
     figPath = os.path.join(result_folder, 'figures')
     checkpoint_folder = os.path.join(result_folder, 'checkpoints')
-    input_filePath = '../2022_May_cleaned/Total.csv'
+    input_filePath = arguments.input_file
 
-    configPath = '../configurations/baseline.json'
-    # configPath = '../config_2022_August.json'
+    configPath = os.path.join('../configurations', arguments.config)
 
-    model_path = os.path.join(checkpoint_folder, 'latest-epoch=0.ckpt')
+    model_path = get_best_model_path(checkpoint_folder)
 
     # set this to false when submitting batch script, otherwise it prints a lot of lines
-    show_progress_bar = False
+    show_progress_bar = arguments.show_progress
 
     # interpret_output has high memory requirement
     # results in out-of-memery for Total.csv and a model of hidden size 64, even with 64GB memory
@@ -319,25 +340,24 @@ if args.interpret_train:
 # ## Train
 
 # %%
+print(f"Variables:\nStatic {tft.static_variables} \nEncoder {tft.encoder_variables} \nDecoder {tft.decoder_variables}.")
+
 if args.interpret_train:
     print("Interpreting train predictions")
     interpretation = tft.interpret_output(train_raw_predictions, reduction="mean")
-    for key in interpretation.keys():
-        print(key, interpretation[key])
-        
-    figures = plotWeights.plot_interpretation(interpretation)
-    for key in figures.keys():
-        figure = figures[key]
-        figure.savefig(os.path.join(plotter.figPath, f'Train_{key}.jpg'), dpi=DPI)
 else:
     print("Interpreting test predictions")
     interpretation = tft.interpret_output(test_raw_predictions, reduction="mean")
-    for key in interpretation.keys():
-        print(key, interpretation[key])
-        
-    figures = plotWeights.plot_interpretation(interpretation)
-    for key in figures.keys():
-        figure = figures[key]
+
+for key in interpretation.keys():
+    print(key, interpretation[key]/torch.sum(interpretation[key]))
+
+figures = plotWeights.plot_interpretation(interpretation)
+for key in figures.keys():
+    figure = figures[key]
+    if args.interpret_train:
+        figure.savefig(os.path.join(plotter.figPath, f'Train_{key}.jpg'), dpi=DPI) 
+    else:
         figure.savefig(os.path.join(plotter.figPath, f'Test_{key}.jpg'), dpi=DPI)
 
 # %% [markdown]

@@ -232,7 +232,7 @@ standard_scaler = StandardScaler().fit(train_data[features])
 
 # %%
 # delta_values = [0.001, 0.002, 0.003, 0.004, 0.005, 0.006, 0.007, 0.008, 0.009]
-delta_values = [0.0001, 0.001, 0.01, 0.1, 0.3, 0.5]
+delta_values = [0.001, 0.01, 0.1, 0.3, 0.5]
 results = {
     'Delta': [],
     'Feature': [],
