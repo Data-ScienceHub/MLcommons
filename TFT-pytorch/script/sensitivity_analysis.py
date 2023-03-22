@@ -3,6 +3,8 @@
 
 # %%
 # python .\sensitivity_analysis.py --config=age_groups_old.json --input-file=../2022_May_age_groups_old/Top_100.csv --output=../results/age_subgroup_old/AGE019 --show-progress=True
+# python .\sensitivity_analysis.py --config=age_groups.json --input-file=../2022_May_age_groups/Top_100.csv --output=../results/age_subgroup/AGE1829 --show-progress=True
+
 import os, gc
 import torch
 from datetime import datetime
@@ -53,7 +55,7 @@ parser.add_argument(
    default='../2022_May_age_groups/Total.csv'
 )
 parser.add_argument(
-   '--output', default='../results/age_subgroup/AGE019',
+   '--output', default='../results/age_subgroup/AGE1829',
    help='output result folder. Anything written in the scratch folder will be ignored by Git.'
 )
 parser.add_argument(
@@ -65,7 +67,7 @@ arguments = parser.parse_args()
 @dataclass
 class args:
     result_folder = arguments.output
-    figPath = os.path.join(result_folder, 'figures_morris_')
+    figPath = os.path.join(result_folder, 'figures_morris')
     checkpoint_folder = os.path.join(result_folder, 'checkpoints')
     input_filePath = arguments.input_file
 
@@ -230,7 +232,7 @@ standard_scaler = StandardScaler().fit(train_data[features])
 
 # %%
 # delta_values = [0.001, 0.002, 0.003, 0.004, 0.005, 0.006, 0.007, 0.008, 0.009]
-delta_values = [0.001]
+delta_values = [0.0001, 0.001, 0.01, 0.1, 0.3, 0.5]
 results = {
     'Delta': [],
     'Feature': [],
@@ -244,56 +246,65 @@ results = {
 
 # %%
 for delta in delta_values:
-    print(f'Delta {delta}.')
+    print(f'---Delta {delta}---\n')
     for index, feature in enumerate(features):
-        # this mimics how TF1 did it
+        print(f'Feature {feature}')
+        # add delta at min max scale
         data = train_minmax_scaled.copy()
         data[index] += delta
         data = minmax_scaler.inverse_transform(data) # return to original scale
 
-        # replace the value in normalized data
+        # replace the value in the standard normalized data
         data = standard_scaler.transform(data)
         train_scaled_copy = train_scaled.copy()
         train_scaled_copy[feature] = data[:, index]
 
-        # inference on delta changed data
+        # infer on the changed data
         dataloader = prepare_data(train_scaled_copy, parameters)
         new_predictions = tft.predict(
             dataloader, show_progress_bar=args.show_progress_bar
         )
+        # scale back to original
         new_predictions = upscale_prediction(
             targets, new_predictions, target_scaler, max_prediction_length
         )
 
         # sum up the change in prediction
-        prediction_change = np.sum([
-            new_predictions[target_index] - train_predictions[target_index]
-                for target_index in range(len(targets)) 
-        ])
-        mu_star = prediction_change / (len(new_predictions[0])*delta)
+        delta_prediction, abs_delta_prediction, N = 0, 0, 0
+        for target_index in range(len(targets)):
+            diff = new_predictions[target_index] - train_predictions[target_index]
+            
+            delta_prediction += np.sum(diff)
+            abs_delta_prediction += np.sum(abs(diff))
 
+            N += len(new_predictions[target_index]) * max_prediction_length
+        
+        mu_star = delta_prediction / (N*delta)
         # since delta is added to min max normalized value, std from same scaling is needed
         standard_deviation = train_minmax_scaled[:, index].std()
-        scaled_morris_index = mu_star * standard_deviation
+        morris = mu_star * standard_deviation
 
-        print(f'Feature {feature}, prediction change {prediction_change:0.5g}, mu_star {mu_star:0.5g}, \
-              sensitivity {scaled_morris_index:0.5g}')
+        print(f'Prediction change {delta_prediction:.5g}, mu_star {mu_star:.5g}, \
+              sensitivity {morris:.5g}')
 
         results['Delta'].append(delta)
         results['Feature'].append(feature)
-        results['Mu_star'].append(mu_star)
-        results['Prediction_change'].append(prediction_change)
-        results['Morris_sensitivity'].append(scaled_morris_index)
 
-        abs_prediction_change = np.sum([
-            abs(new_predictions[target_index] - train_predictions[target_index])
-                for target_index in range(len(targets)) 
-        ])
-        absolute_mu_star = abs_prediction_change  / (len(new_predictions[0])*delta)
-        results['Absolute_prediction_change'].append(abs_prediction_change)
-        results['Absolute_mu_star'].append(absolute_mu_star)
-        results['Absolute_morris_sensitivity'].append(absolute_mu_star * standard_deviation)
+        results['Prediction_change'].append(delta_prediction)
+        results['Mu_star'].append(mu_star)
+        results['Morris_sensitivity'].append(morris)
+
+        abs_mu_star = abs_delta_prediction / (N*delta)
+        abs_morris = abs_mu_star * standard_deviation
+        print(f'Absolute prediction change {abs_delta_prediction:.5g}, \
+              mu {abs_mu_star:.5g}, sensitivity {abs_morris:.5g}')
+        
+        results['Absolute_prediction_change'].append(abs_delta_prediction)
+        results['Absolute_mu_star'].append(abs_mu_star)
+        results['Absolute_morris_sensitivity'].append(abs_morris)
         print()
+    #     break
+    # break
     print()
 
 # %% [markdown]
@@ -309,16 +320,21 @@ result_df
 
 # %%
 from Class.PlotConfig import *
+from matplotlib.ticker import ScalarFormatter
+
+formatter = ScalarFormatter(useOffset=True)
+formatter.set_powerlimits((-3, 3))
 
 # %%
 for delta in delta_values:
     print(delta)
-    fig = plt.figure(figsize = (12, 8))
-    plt.bar(features, result_df[result_df['Delta']==delta]['Morris_sensitivity'])
+    fig, ax = plt.subplots(figsize=(10, 7))
+    ax.bar(features, result_df[result_df['Delta']==delta]['Morris_sensitivity'])
     
-    plt.ylabel("Scaled Morris Index")
-    plt.tight_layout()
-    plt.savefig(os.path.join(args.figPath, f'delta_{delta}.jpg'), dpi=200)
+    ax.yaxis.set_major_formatter(formatter)
+    ax.set_ylabel("Scaled Morris Index")
+    fig.tight_layout()
+    fig.savefig(os.path.join(args.figPath, f'delta_{delta}.jpg'), dpi=200)
     plt.show()
     # break
 
