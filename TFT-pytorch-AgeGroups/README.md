@@ -24,9 +24,9 @@ This folder contains the `Temporal Fushion Transformer` implemented in [`Pytorch
   * outputs
   * `__init__.py`
   * `prepare_data.py`: Prepare merged data from raw feature files.
-  * `sensitivity_analysis.py`
-  * `slurm-sensitivity.sh`
-  * `slurm-train.sh`
+  * `sensitivity_analysis.py`: Calculating Morris Sensitivity
+  * `slurm-sensitivity.sh`: For when using singularity.
+  * `slurm-train.sh`: For when using singularity.
   * `train_age_group.py`
   * `utils.py`: Contains utility methods.
 
