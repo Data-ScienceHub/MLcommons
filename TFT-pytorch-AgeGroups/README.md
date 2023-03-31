@@ -12,18 +12,22 @@ This folder contains the `Temporal Fushion Transformer` implemented in [`Pytorch
   * `__int__.py`
 
 * `Ground Truth`: Truth data from the CDC and US Census, which provide the true infection rates for each age group.
-  * 2019gender_table1.csv
-  * COVID-19_Weekly_Cases_and_Deaths_by_Age__Race_Ethnicity__and_Sex.csv
-  * nc-est2021-agesex-res.csv
+  * `2019gender_table1.csv`
+  * `COVID-19_Weekly_Cases_and_Deaths_by_Age__Race_Ethnicity__and_Sex.csv`
+  * `nc-est2021-agesex-res.csv`
 
 * `configurations`: Folder to save some common configurations.
 
-* `results`: Contains files for each Age Group
+* `results`: Contains files for each Age Group showing the Morris Sensistivity results.
 
-* `script`: Contains scripts for submitting batch jobs. For details on how to use then, check the readme inside the folder.
+* `script`: Contains scripts for submitting batch jobs.
+  * outputs
+  * `__init__.py`
   * `prepare_data.py`: Prepare merged data from raw feature files.
-  * `train.py`: Train model on merged data, then interpret using the best model by validation loss.
-  * `inference.py`: Inference from a saved checkpoint.
+  * `sensitivity_analysis.py`
+  * `slurm-sensitivity.sh`
+  * `slurm-train.sh`
+  * `train_age_group.py`
   * `utils.py`: Contains utility methods.
 
 * `Plotting All Results.ipynb`: Notebook version of the scripts. Use these for debugging or new implementation purpose.
