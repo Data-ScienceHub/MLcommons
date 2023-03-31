@@ -36,7 +36,7 @@ This folder contains the `Temporal Fushion Transformer` implemented in [`Pytorch
 
 * `fig2.png`: Weekly COVID-19 Cases by Age Group.
 
-* `singularity.def`: 
+* `singularity.def`: Used to perform COVID-19 forecasting using TFT-pytorch.
 
 ### Runtime
 
