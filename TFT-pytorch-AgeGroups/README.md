@@ -3,16 +3,13 @@
 This folder contains the `Temporal Fushion Transformer` implemented in [`PytorchForecasting`](https://pytorch-forecasting.readthedocs.io/en/stable/api/pytorch_forecasting.models.temporal_fusion_transformer.TemporalFusionTransformer.html) framework. This study aimed to identify the most influential age groups in COVID-19 infection rates at the US county level using the Modified Morris Method and deep learning for time-series. Our approach involved training the state-of-the-art time-series model Temporal Fusion Transformer on different age groups as a static feature and the population vaccination status as the dynamic feature. We analyzed the impact of those age groups on COVID-19 infection rates by perturbing individual input features and ranked them based on their Morris sensitivity scores, which quantify their contribution to COVID-19 transmission rates. 
 
 ## Folder structure
-
-* `2022_May_cleaned`: Contains the merged feature files. After removing outliers from both inputs and outputs.
-  * `Total.csv`: All 3,142 counties. 
-  * `Top_N.csv`: Subset of the features that use top N counties by population.
-  * Because of the large file size, the `Total.csv` is available on Google drive [here](https://drive.google.com/drive/folders/16pxOo1TFAWi6HrqJ9ex_L_x3uZer7AL2?usp=sharing).
 * `Class`
-  * DataMerger
-  * DataProcessor
-  * Parameters
-  * Plotter
+  * DataMerger.py
+  * Parameters.py
+  * PlotConfig.py
+  * Plotter.py
+  * PredictionProcessor.py
+  * __int__.py
 
 * `configurations`: Folder to save some common configurations.
 * `notebooks`: Notebook version of the scripts. Use these for debugging or new implementation purpose.
