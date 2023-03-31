@@ -9,7 +9,7 @@ This folder contains the `Temporal Fushion Transformer` implemented in [`Pytorch
   * PlotConfig.py
   * Plotter.py
   * PredictionProcessor.py
-  * `__int__.py`
+  * _\_\int_\_\.py`
 
 * `configurations`: Folder to save some common configurations.
 * `notebooks`: Notebook version of the scripts. Use these for debugging or new implementation purpose.
