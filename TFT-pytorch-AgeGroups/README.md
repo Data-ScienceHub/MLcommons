@@ -11,7 +11,7 @@ This folder contains the `Temporal Fushion Transformer` implemented in [`Pytorch
   * `PredictionProcessor.py`
   * `__int__.py`
 
-* `Ground Truth`
+* `Ground Truth`: Truth data from the CDC and US Census, which provide the true infection rates for each age group.
   * 2019gender_table1.csv
   * COVID-19_Weekly_Cases_and_Deaths_by_Age__Race_Ethnicity__and_Sex.csv
   * nc-est2021-agesex-res.csv
