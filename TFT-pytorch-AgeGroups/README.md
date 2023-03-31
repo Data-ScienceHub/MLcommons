@@ -27,22 +27,16 @@ This folder contains the `Temporal Fushion Transformer` implemented in [`Pytorch
   * `sensitivity_analysis.py`: Calculating Morris Sensitivity
   * `slurm-sensitivity.sh`: For when using singularity.
   * `slurm-train.sh`: For when using singularity.
-  * `train_age_group.py`
+  * `train_age_group.py`: Train Age Group model then interpret using the best model by validation loss.
   * `utils.py`: Contains utility methods.
 
-* `Plotting All Results.ipynb`: Notebook version of the scripts. Use these for debugging or new implementation purpose.
+* `Plotting All Results.ipynb`: Plotting Morris Index Results and Final Rankings.
 
-* `fig1.png`: Notebook version of the scripts. Use these for debugging or new implementation purpose.
+* `fig1.png`: Model Sensitivity to Age.
 
-* `fig2.png`: Notebook version of the scripts. Use these for debugging or new implementation purpose.
+* `fig2.png`: Weekly COVID-19 Cases by Age Group.
 
-* `singularity.def`: Notebook version of the scripts. Use these for debugging or new implementation purpose.
-
-## Demo
-
-TODO
-
-## Environment
+* `singularity.def`: 
 
 ### Runtime
 
