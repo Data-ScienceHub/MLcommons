@@ -4,14 +4,26 @@ This folder contains the `Temporal Fushion Transformer` implemented in [`Pytorch
 
 ## Folder structure
 * `Class`
-  * DataMerger.py
-  * Parameters.py
-  * PlotConfig.py
-  * Plotter.py
-  * PredictionProcessor.py
-  * _\_int_\_\.py`
+  * `DataMerger.py`
+  * `Parameters.py`
+  * `PlotConfig.py`
+  * `Plotter.py`
+  * `PredictionProcessor.py`
+  * `__int__.py`
+
+* `Ground Truth`
+  * 2019gender_table1.csv
+  * COVID-19_Weekly_Cases_and_Deaths_by_Age__Race_Ethnicity__and_Sex.csv
+  * nc-est2021-agesex-res.csv
 
 * `configurations`: Folder to save some common configurations.
+
+* `script`: Contains scripts for submitting batch jobs. For details on how to use then, check the readme inside the folder.
+  * `prepare_data.py`: Prepare merged data from raw feature files.
+  * `train.py`: Train model on merged data, then interpret using the best model by validation loss.
+  * `inference.py`: Inference from a saved checkpoint.
+  * `utils.py`: Contains utility methods.
+
 * `notebooks`: Notebook version of the scripts. Use these for debugging or new implementation purpose.
   * Data preparation.ipynb
   * Train.ipynb
@@ -23,12 +35,7 @@ This folder contains the `Temporal Fushion Transformer` implemented in [`Pytorch
   * `figures`: saves the figures plotted by the final model obtained after finishing the training.
   * `figures_best`: figures plotted using the model with best validation loss. 
   * `lightning_logs`: This folder is used by tensorboard to log the training and validation visualization. You can point this folder by clicking the line before `import tensorboard as tb` in the training code (both script and notebook), that says `launch tensorboard session`. VSCode will automatically suggest the extensions needed for it. It can also run from cmd line, using `tensorboard --logdir=lightning_logs`, then it'll show something like `TensorBoard 2.9.0 at http://localhost:6006/ (Press CTRL+C to quit)`. Copy paste the URL in your local browser. To save the images, check `show data download links in the top left`.
-  
-* `script`: Contains scripts for submitting batch jobs. For details on how to use then, check the readme inside the folder.
-  * `prepare_data.py`: Prepare merged data from raw feature files.
-  * `train.py`: Train model on merged data, then interpret using the best model by validation loss.
-  * `inference.py`: Inference from a saved checkpoint.
-  * `utils.py`: Contains utility methods.
+
 * `config_2022_May.json`: Configuration file to reproduce the experiments using the raw dataset from [CovidMay17-2022](../dataset_raw/CovidMay17-2022/). This is new dataset that will be used in the experiment.
 
 ## Configuration
