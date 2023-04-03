@@ -15,7 +15,7 @@ The Age-groups folder contains the `Temporal Fushion Transformer` implemented in
 
 * `.gitignore`
 
-* `singilarity.def`
+* `singilarity.def`: For when using singularity.
 
 ### Runtime
 
