@@ -15,6 +15,8 @@ The Age-groups folder contains the `Temporal Fushion Transformer` implemented in
 
 * `.gitignore`: Slurm script
 
+* `Feature_Sensitivity.zip`: Paper describing model and results
+
 * `singilarity.def`: For when using singularity.
 
 ### Runtime
