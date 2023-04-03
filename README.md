@@ -13,7 +13,7 @@ The Age-groups folder contains the `Temporal Fushion Transformer` implemented in
 
 * `original-TFT-pytorch`: Previous work on TFT models
 
-* `.gitignore`
+* `.gitignore`: Slurm script
 
 * `singilarity.def`: For when using singularity.
 
