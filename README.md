@@ -36,8 +36,6 @@ The Age-groups folder contains the `Temporal Fushion Transformer` implemented in
 
 * `fig2.png`: Weekly COVID-19 Cases by Age Group.
 
-* `singularity.def`: Used to perform COVID-19 forecasting using TFT-pytorch.
-
 ### Runtime
 
 Currently on Rivanna with batch size 64, each epoch with
