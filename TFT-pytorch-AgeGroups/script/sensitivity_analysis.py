@@ -62,7 +62,7 @@ from dataclasses import dataclass
 @dataclass
 class args:
     result_folder = '../results/UNDER5' 
-    figPath = os.path.join(result_folder, 'figures_morris_experiment1')
+    figPath = os.path.join(result_folder, 'figures_morris')
     checkpoint_folder = os.path.join(result_folder, 'checkpoints')
     input_filePath = '../2022_May_age_groups/Total.csv'
 
