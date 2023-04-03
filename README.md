@@ -7,7 +7,7 @@ The Age-groups folder contains the `Temporal Fushion Transformer` implemented in
 
 * `Notes`: Extra documentation and notes
 
-* `age-groups`
+* `age-groups`: Classes, ground truth, and results with corresponding scripts
 
 * `dataset_raw`
 
