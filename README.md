@@ -1,80 +1,104 @@
-# Interpreting County Level COVID-19 Infection and Feature Sensitivity using Deep Learning Time Series Models
+# Introduction
 
-## Introduction
-This work combines sensitivity analysis with heterogeneous time-series deep learning model prediction, which corresponds to the interpretations of Spatio-temporal features from what the model has actually learned. We forecast county-level COVID-19 infection using the Temporal Fusion Transformer (TFT). We then use the sensitivity analysis extending Morris Method to see how sensitive the outputs are with respect to perturbation to our static and dynamic input features. We have collected more than 2.5 years of socioeconomic and health features over 3142 US counties. Using the proposed framework, we conduct extensive experiments and show our model can learn complex interactions and perform predictions for daily infection at the county level. 
+This folder contains the `Temporal Fushion Transformer` implemented in [`PytorchForecasting`](https://pytorch-forecasting.readthedocs.io/en/stable/api/pytorch_forecasting.models.temporal_fusion_transformer.TemporalFusionTransformer.html) framework. This study aimed to identify the most influential age groups in COVID-19 infection rates at the US county level using the Modified Morris Method and deep learning for time-series. The approach involved training the state-of-the-art time-series model Temporal Fusion Transformer on different age groups as a static feature and the population vaccination status as the dynamic feature. The impact of those age groups were analyzed on COVID-19 infection rates by perturbing individual input features and ranked them based on their Morris sensitivity scores, which quantify their contribution to COVID-19 transmission rates.The data contains the population by age subgroups for each of the 3,142 US counties, along with the daily vaccination rate of the population and COVID-19 case report from March 1, 2020, to Dec 27, 2021. The eight age subgroups are 0-4, 5-17, 18-29, 30-39, 40-49, 50-64, 65-74, and 75 and older for all counties.
 
-## Folder Structure
-* **dataset_raw**: Contains the collected raw dataset and the supporting files. To update use the [Update dynamic dataset](/dataset_raw/Update%20dynamic%20features.ipynb) notebook. Static dataset is already update till the onset of COVID-19 using [Update static dataset](/dataset_raw/Update%20static%20features.ipynb) notebook.
-* **TFT-pytorch**: Contains all codes and merged feature files used during the TFT experimentation setup and interpretation. For more details, check the [README.md](/TFT-pytorch/README.md) file inside it. The primary results are highlighted in [results.md](/TFT-pytorch/results.md). 
+## Folder structure for all models and results in Age-groups
+* `Class`
+  * `DataMerger.py`
+  * `Parameters.py`
+  * `PlotConfig.py`
+  * `Plotter.py`
+  * `PredictionProcessor.py`
+  * `__int__.py`
 
+* `Ground Truth`: Truth data from the CDC and US Census, which provide the true infection rates for each age group.
+  * `2019gender_table1.csv`
+  * `COVID-19_Weekly_Cases_and_Deaths_by_Age__Race_Ethnicity__and_Sex.csv`
+  * `nc-est2021-agesex-res.csv`
 
-## How to Reproduce
+* `configurations`: Folder to save some common configurations.
 
-### Virtual Environment
-To create the virtual environment
-* By pip, use the [requirement.txt](/requirements.txt).
-* By anaconda, use the [environment.yml](/environment.yml).
+* `results`: Contains files for each Age Group showing the Morris Sensistivity results.
 
-### Singularity
-You can either pull the singularity container from the remote library,
-```bash
-singularity pull tft_pytorch.sif library://khairulislam/collection/tft_pytorch:latest
+* `script`: Contains scripts for submitting batch jobs.
+  * outputs
+  * `__init__.py`
+  * `prepare_data.py`: Prepare merged data from raw feature files.
+  * `sensitivity_analysis.py`: Calculating Morris Sensitivity
+  * `slurm-sensitivity.sh`: For when using singularity.
+  * `slurm-train.sh`: For when using singularity.
+  * `train_age_group.py`: Train Age Group model then interpret using the best model by validation loss.
+  * `utils.py`: Contains utility methods.
+
+* `Plotting All Results.ipynb`: Plotting Morris Index Results and Final Rankings.
+
+* `fig1.png`: Model Sensitivity to Age.
+
+* `fig2.png`: Weekly COVID-19 Cases by Age Group.
+
+* `singularity.def`: Used to perform COVID-19 forecasting using TFT-pytorch.
+
+### Runtime
+
+Currently on Rivanna with batch size 64, each epoch with
+
+* Top 100 counties takes around 2-3 minutes.
+* Top 500 counties takes around 12-13 minutes, memory 24GB.
+* Total 3,142 counties takes around 40-45 minutes, memory 32GB.
+
+### Google Colab
+
+A training notebook run on colab is shared [here](https://colab.research.google.com/drive/1yhI1PesOXYlB6iYXHre9zXMks1a4P6U2?usp=sharing). Feel free to copy and run on your colab and let me know if there are any issues.
+
+If you are running on **Google colab**, most libraries are already installed there. You'll only have to install the pytorch forecasting and lightning module. Uncomment the installation commands in the code or set `running_on_colab` to `True` in the code. Upload the TFT-pytorch folder in your drive and set that path in the notebook colab section.
+
+```python
+!pip install pytorch_lightning
+!pip install pytorch_forecasting
 ```
-Or create the container locally using the [singularity.def](/TFT-pytorch/singularity.def) file. Executeg the following command. This uses the definition file to create the container from scratch. Note that is uses `sudo` and requires root privilege. After compilation, you'll get a container named `tft_pytorch.sif`. 
 
-```bash
-sudo singularity build singultft_pytorchatft_pytorchrity.sif singularity.def
+If you want to run the data preparation notebook, upload the [CovidMay17-2022](../dataset_raw/CovidMay17-2022/) folder too. Modify the path accordingly in the notebook.
+
+### Rivanna/CS server
+
+On **Rivanna**, the default python environment doesn't have all the libraries we need. The [requirements.txt](requirements.txt) file contains a list of libraries we need. There are two ways you can run the training there
+
+#### Default Environment
+
+Rivanna provides a bunch of python kernels readily available. You can check them from an interactive Jupyterlab session, on the top-right side of the notebook. I have tested with the `Tensorflow 2.8.0/Keras Py3.9` kernel and uncommented the following snippet in the code.
+
+```python
+!pip install pytorch_lightning
+!pip install pytorch_forecasting
 ```
 
-## Input Features
+You can choose different kernels and install the additional libraries. 
 
-Note that, past values target and known futures are also used as observed inputs by TFT.
+#### Virtual Environment
 
-<div align="center">
+You can directly create a python virtual environment using the [environment.yml](environment.yml) file and Anaconda. Then you won't have to install the libraries each time. Copy this file to your home directory and run the following command,
 
-| Feature        | Type       |
-|:------------------------:|:------------:|
-| Age Group               | Static     |
-| Vaccination Full Dose   | Dynamic    |
-| SinWeekly | Known Future |
+```bash
+conda create --name <env> --file <this file>
 
-</div>
+# for example
+conda create --name ml --file environment.yml
 
-<h2 class="accordion-toggle accordion-toggle-icon">Details of Input Features</h4>
-<div class="accordion-content">
-<table class="pop_up_table">
-<thead>
-<tr>
-<th scope="col">Data Domain  <br /> Component(s)</th>
-<th colspan="2" scope="col">Update Freq.</th>
-<th scope="col">Description/Rationale</th>
-<th scope="col">Source(s)</th>
-</tr>
+# then activate the environment with
+conda activate ml
+# now you should be able to run the files from your cmd line without error
+# if you are on notebook select this environment as your kernel
+```
 
-</thead>
-<tbody>
+You can also create the environment in this current directory, then the virtual environment will be saved in this folder instead, not in the home directory.
 
-<tr>
-<td colspan="4"><strong>Age Distribution</strong></td>
-</tr>
-<tr>
-<td>Age Group</td>
-<td>Static</td>
-<td style="background: #9A42C8;"></td>
-<td>Percent of people in the age group 0-4, 5-17, 18-29, 30-39, 40-49, 50-59, 60-74, or 75+ from 2016-2020 American Community Survey (ACS).</td>
-<td><span><a href="https://svi.cdc.gov/data-and-tools-download.html" target="_blank">2020 SVI</a></span></td>
-</tr>
+#### GPU 
 
-<tr>
-<td colspan="4"><strong>Vaccination Full Dose</strong></td>
-</tr>
-<tr>
-<td>Series_Complete_Pop_Pct</td>
-<td>Daily</td>
-<td style="background: #4258C9;"></td>
-<td> Percent of people who are fully vaccinated (have second dose of a two-dose vaccine or one dose of a single-dose vaccine) based on the jurisdiction and county where recipient lives.</td>
-<td><span><a href="https://www.unacast.com/covid19/social-distancing-scoreboard" target="_blank">CDC</a></span></td>
-</tr>
+Next, you might face issues getting GPU running on Rivanna. Even on a GPU server the code might not recognize the GPU hardware if cuda and cudnn are not properly setup. Try to log into an interactive session in a GPU server, then run the following command
 
-</tbody>
-</table>
+```bash
+import tensorflow as tf
+print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+```
+
+If this is still 0, then you'll have to install the cuda and cudnn versions that match version in `nvidia-smi` command output. Also see if you tensorflow version is for CPU or GPU.
