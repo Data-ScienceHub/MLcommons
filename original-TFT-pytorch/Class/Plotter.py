@@ -64,12 +64,13 @@ class PlotResults:
                 if scale ==1e3: unit = 'K'
                 else: unit = 'M'
 
-                for loc in plt.yticks()[0]:
+                for loc in ax.get_yticks():
                     if loc == 0:
                         label_text.append('0')
                     else:
                         label_text.append(f'{loc/scale:0.5g}{unit}') 
 
+                ax.set_yticks(ax.get_yticks())
                 ax.set_yticklabels(label_text)
                 plt.ylabel(f'Daily {target}')
             else:
