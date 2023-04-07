@@ -1,0 +1,114 @@
+cuda
+Started at 2023-04-05 14:55:29.423055
+(2541878, 11)
+Static features ['White', 'Black', 'Asian', 'Hispanic', 'AIAN'].   Choosing feature White.
+There are 3142 unique counties in the dataset.
+Train samples 2001454, validation samples 87976, test samples 87976
+637 days of training, 15 days of validation data, 15 days of test data.
+Scaling static and dynamic input features: ['White', 'VaccinationFull']
+Scaling targets ['Cases']
+Number of parameters in network: 16.5k
+
+---Training results--
+
+Delta -0.01.
+Feature White, mu_star -1.123e-05, sensitivity -2.4016e-06
+Feature VaccinationFull, mu_star 0.00017452, sensitivity 3.235e-05
+
+Delta -0.009.
+Feature White, mu_star -1.3527e-05, sensitivity -2.893e-06
+Feature VaccinationFull, mu_star 0.00019365, sensitivity 3.5896e-05
+
+Delta -0.008.
+Feature White, mu_star -1.5235e-05, sensitivity -3.2582e-06
+Feature VaccinationFull, mu_star 0.0002114, sensitivity 3.9187e-05
+
+Delta -0.007.
+Feature White, mu_star -1.9118e-05, sensitivity -4.0886e-06
+Feature VaccinationFull, mu_star 0.00023774, sensitivity 4.4069e-05
+
+Delta -0.006.
+Feature White, mu_star -1.9361e-05, sensitivity -4.1405e-06
+Feature VaccinationFull, mu_star 1.4744e-05, sensitivity 2.7331e-06
+
+Delta -0.005.
+Feature White, mu_star -1.9552e-05, sensitivity -4.1814e-06
+Feature VaccinationFull, mu_star 1.4208e-05, sensitivity 2.6336e-06
+
+Delta -0.004.
+Feature White, mu_star -2.2891e-05, sensitivity -4.8955e-06
+Feature VaccinationFull, mu_star 1.5564e-05, sensitivity 2.885e-06
+
+Delta -0.003.
+Feature White, mu_star -2.763e-05, sensitivity -5.9089e-06
+Feature VaccinationFull, mu_star 1.921e-05, sensitivity 3.5609e-06
+
+Delta -0.002.
+Feature White, mu_star -1.166e-05, sensitivity -2.4937e-06
+Feature VaccinationFull, mu_star 1.65e-05, sensitivity 3.0585e-06
+
+Delta -0.001.
+Feature White, mu_star -1.4018e-05, sensitivity -2.998e-06
+Feature VaccinationFull, mu_star 1.9615e-05, sensitivity 3.636e-06
+
+Delta 0.001.
+Feature White, mu_star 4.6105e-06, sensitivity 9.8601e-07
+Feature VaccinationFull, mu_star 2.3015e-05, sensitivity 4.2661e-06
+
+Delta 0.002.
+Feature White, mu_star -2.0835e-06, sensitivity -4.4557e-07
+Feature VaccinationFull, mu_star 1.8324e-05, sensitivity 3.3967e-06
+
+Delta 0.003.
+Feature White, mu_star -1.1552e-05, sensitivity -2.4704e-06
+Feature VaccinationFull, mu_star 1.6258e-05, sensitivity 3.0138e-06
+
+Delta 0.004.
+Feature White, mu_star -1.3639e-05, sensitivity -2.9169e-06
+Feature VaccinationFull, mu_star 2.1365e-05, sensitivity 3.9604e-06
+
+Delta 0.005.
+Feature White, mu_star -1.9539e-05, sensitivity -4.1787e-06
+Feature VaccinationFull, mu_star 2.0294e-05, sensitivity 3.7618e-06
+
+Delta 0.006.
+Feature White, mu_star -1.6235e-05, sensitivity -3.4721e-06
+Feature VaccinationFull, mu_star 2.1804e-05, sensitivity 4.0417e-06
+
+Delta 0.007.
+Feature White, mu_star -1.5048e-05, sensitivity -3.2182e-06
+Feature VaccinationFull, mu_star 2.5209e-05, sensitivity 4.6729e-06
+
+Delta 0.008.
+Feature White, mu_star -1.3451e-05, sensitivity -2.8766e-06
+Feature VaccinationFull, mu_star 2.7492e-05, sensitivity 5.0961e-06
+
+Delta 0.009.
+Feature White, mu_star -1.4791e-05, sensitivity -3.1632e-06
+Feature VaccinationFull, mu_star 2.724e-05, sensitivity 5.0494e-06
+
+Delta 0.01.
+Feature White, mu_star -1.3222e-05, sensitivity -2.8278e-06
+Feature VaccinationFull, mu_star 2.6788e-05, sensitivity 4.9656e-06
+
+-0.01
+-0.009
+-0.008
+-0.007
+-0.006
+-0.005
+-0.004
+-0.003
+-0.002
+-0.001
+0.001
+0.002
+0.003
+0.004
+0.005
+0.006
+0.007
+0.008
+0.009
+0.01
+Ended at 2023-04-06 08:18:23.068869. Elapsed time 17:22:53.645826
