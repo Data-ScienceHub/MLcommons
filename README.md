@@ -7,11 +7,13 @@ The Age-groups folder contains the `Temporal Fushion Transformer` implemented in
 
 * `Notes`: Extra documentation and notes
 
-* `age-groups`: Classes, ground truth, and results with corresponding scripts
+* `age-groups`: Age groups, ground truth, and results with corresponding scripts
 
 * `dataset_raw`: raw data set in CSV files
 
 * `original-TFT-pytorch`: Previous work on TFT models
+
+* `race-groups`: Race groups, ground truth, and results with corresponding scripts
 
 * `.gitignore`: Slurm script
 
