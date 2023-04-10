@@ -1,0 +1,114 @@
+cuda
+Started at 2023-04-05 15:00:39.220805
+(2541878, 11)
+Static features ['White', 'Black', 'Asian', 'Hispanic', 'AIAN'].   Choosing feature Asian.
+There are 3142 unique counties in the dataset.
+Train samples 2001454, validation samples 87976, test samples 87976
+637 days of training, 15 days of validation data, 15 days of test data.
+Scaling static and dynamic input features: ['Asian', 'VaccinationFull']
+Scaling targets ['Cases']
+Number of parameters in network: 16.5k
+
+---Training results--
+
+Delta -0.01.
+Feature Asian, mu_star 4.6296e-05, sensitivity 3.1472e-06
+Feature VaccinationFull, mu_star 0.0004034, sensitivity 7.4778e-05
+
+Delta -0.009.
+Feature Asian, mu_star 4.812e-05, sensitivity 3.2711e-06
+Feature VaccinationFull, mu_star 0.00040838, sensitivity 7.5701e-05
+
+Delta -0.008.
+Feature Asian, mu_star 5.0923e-05, sensitivity 3.4617e-06
+Feature VaccinationFull, mu_star 0.00041688, sensitivity 7.7276e-05
+
+Delta -0.007.
+Feature Asian, mu_star 5.29e-05, sensitivity 3.5961e-06
+Feature VaccinationFull, mu_star 0.00042141, sensitivity 7.8116e-05
+
+Delta -0.006.
+Feature Asian, mu_star 5.9647e-05, sensitivity 4.0548e-06
+Feature VaccinationFull, mu_star 0.00033835, sensitivity 6.2718e-05
+
+Delta -0.005.
+Feature Asian, mu_star 6.405e-05, sensitivity 4.3541e-06
+Feature VaccinationFull, mu_star 0.00033796, sensitivity 6.2646e-05
+
+Delta -0.004.
+Feature Asian, mu_star 6.9037e-05, sensitivity 4.6931e-06
+Feature VaccinationFull, mu_star 0.0003355, sensitivity 6.2191e-05
+
+Delta -0.003.
+Feature Asian, mu_star 7.8494e-05, sensitivity 5.3359e-06
+Feature VaccinationFull, mu_star 0.00033515, sensitivity 6.2125e-05
+
+Delta -0.002.
+Feature Asian, mu_star 8.3868e-05, sensitivity 5.7012e-06
+Feature VaccinationFull, mu_star 0.00032525, sensitivity 6.0291e-05
+
+Delta -0.001.
+Feature Asian, mu_star 9.1346e-05, sensitivity 6.2096e-06
+Feature VaccinationFull, mu_star 0.00031417, sensitivity 5.8236e-05
+
+Delta 0.001.
+Feature Asian, mu_star 3.0869e-05, sensitivity 2.0984e-06
+Feature VaccinationFull, mu_star 0.00034132, sensitivity 6.3269e-05
+
+Delta 0.002.
+Feature Asian, mu_star 6.7447e-06, sensitivity 4.585e-07
+Feature VaccinationFull, mu_star 0.00034023, sensitivity 6.3067e-05
+
+Delta 0.003.
+Feature Asian, mu_star 2.1746e-05, sensitivity 1.4783e-06
+Feature VaccinationFull, mu_star 0.00033825, sensitivity 6.2701e-05
+
+Delta 0.004.
+Feature Asian, mu_star 3.3751e-05, sensitivity 2.2944e-06
+Feature VaccinationFull, mu_star 0.0003391, sensitivity 6.2858e-05
+
+Delta 0.005.
+Feature Asian, mu_star 3.0493e-05, sensitivity 2.0729e-06
+Feature VaccinationFull, mu_star 0.00034591, sensitivity 6.412e-05
+
+Delta 0.006.
+Feature Asian, mu_star 3.4571e-05, sensitivity 2.3501e-06
+Feature VaccinationFull, mu_star 0.00034939, sensitivity 6.4765e-05
+
+Delta 0.007.
+Feature Asian, mu_star 3.8335e-05, sensitivity 2.606e-06
+Feature VaccinationFull, mu_star 0.00035272, sensitivity 6.5383e-05
+
+Delta 0.008.
+Feature Asian, mu_star 3.5047e-05, sensitivity 2.3825e-06
+Feature VaccinationFull, mu_star 0.00036424, sensitivity 6.7518e-05
+
+Delta 0.009.
+Feature Asian, mu_star 3.2945e-05, sensitivity 2.2396e-06
+Feature VaccinationFull, mu_star 0.00040822, sensitivity 7.567e-05
+
+Delta 0.01.
+Feature Asian, mu_star 3.0674e-05, sensitivity 2.0852e-06
+Feature VaccinationFull, mu_star 0.00040075, sensitivity 7.4285e-05
+
+-0.01
+-0.009
+-0.008
+-0.007
+-0.006
+-0.005
+-0.004
+-0.003
+-0.002
+-0.001
+0.001
+0.002
+0.003
+0.004
+0.005
+0.006
+0.007
+0.008
+0.009
+0.01
+Ended at 2023-04-06 07:57:06.387307. Elapsed time 16:56:27.166514

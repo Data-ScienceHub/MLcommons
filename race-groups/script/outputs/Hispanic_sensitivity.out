@@ -1,0 +1,114 @@
+cuda
+Started at 2023-04-05 15:39:46.488598
+(2541878, 11)
+Static features ['White', 'Black', 'Asian', 'Hispanic', 'AIAN'].   Choosing feature Hispanic.
+There are 3142 unique counties in the dataset.
+Train samples 2001454, validation samples 87976, test samples 87976
+637 days of training, 15 days of validation data, 15 days of test data.
+Scaling static and dynamic input features: ['Hispanic', 'VaccinationFull']
+Scaling targets ['Cases']
+Number of parameters in network: 16.5k
+
+---Training results--
+
+Delta -0.01.
+Feature Hispanic, mu_star -2.3196e-06, sensitivity -3.3802e-07
+Feature VaccinationFull, mu_star 0.00025272, sensitivity 4.6846e-05
+
+Delta -0.009.
+Feature Hispanic, mu_star -2.0414e-06, sensitivity -2.9749e-07
+Feature VaccinationFull, mu_star 0.00025298, sensitivity 4.6894e-05
+
+Delta -0.008.
+Feature Hispanic, mu_star -1.7451e-06, sensitivity -2.5431e-07
+Feature VaccinationFull, mu_star 0.00025446, sensitivity 4.7169e-05
+
+Delta -0.007.
+Feature Hispanic, mu_star -4.1223e-06, sensitivity -6.0072e-07
+Feature VaccinationFull, mu_star 0.00025719, sensitivity 4.7675e-05
+
+Delta -0.006.
+Feature Hispanic, mu_star -3.5725e-06, sensitivity -5.2061e-07
+Feature VaccinationFull, mu_star 0.00023046, sensitivity 4.2719e-05
+
+Delta -0.005.
+Feature Hispanic, mu_star -2.825e-06, sensitivity -4.1168e-07
+Feature VaccinationFull, mu_star 0.00023344, sensitivity 4.3271e-05
+
+Delta -0.004.
+Feature Hispanic, mu_star -1.7988e-07, sensitivity -2.6213e-08
+Feature VaccinationFull, mu_star 0.00023448, sensitivity 4.3465e-05
+
+Delta -0.003.
+Feature Hispanic, mu_star -1.3204e-06, sensitivity -1.9241e-07
+Feature VaccinationFull, mu_star 0.00022986, sensitivity 4.2609e-05
+
+Delta -0.002.
+Feature Hispanic, mu_star -1.3811e-05, sensitivity -2.0126e-06
+Feature VaccinationFull, mu_star 0.0002263, sensitivity 4.1948e-05
+
+Delta -0.001.
+Feature Hispanic, mu_star 2.5073e-05, sensitivity 3.6538e-06
+Feature VaccinationFull, mu_star 0.00022907, sensitivity 4.2462e-05
+
+Delta 0.001.
+Feature Hispanic, mu_star 2.5315e-05, sensitivity 3.6891e-06
+Feature VaccinationFull, mu_star 0.00023908, sensitivity 4.4317e-05
+
+Delta 0.002.
+Feature Hispanic, mu_star 1.8821e-05, sensitivity 2.7428e-06
+Feature VaccinationFull, mu_star 0.00023967, sensitivity 4.4427e-05
+
+Delta 0.003.
+Feature Hispanic, mu_star 1.3513e-05, sensitivity 1.9692e-06
+Feature VaccinationFull, mu_star 0.0002347, sensitivity 4.3506e-05
+
+Delta 0.004.
+Feature Hispanic, mu_star 8.9555e-06, sensitivity 1.3051e-06
+Feature VaccinationFull, mu_star 0.00023276, sensitivity 4.3146e-05
+
+Delta 0.005.
+Feature Hispanic, mu_star 2.7653e-06, sensitivity 4.0297e-07
+Feature VaccinationFull, mu_star 0.00023418, sensitivity 4.3409e-05
+
+Delta 0.006.
+Feature Hispanic, mu_star 2.1307e-06, sensitivity 3.105e-07
+Feature VaccinationFull, mu_star 0.00024042, sensitivity 4.4565e-05
+
+Delta 0.007.
+Feature Hispanic, mu_star -7.1862e-07, sensitivity -1.0472e-07
+Feature VaccinationFull, mu_star 0.00024398, sensitivity 4.5226e-05
+
+Delta 0.008.
+Feature Hispanic, mu_star -1.6739e-06, sensitivity -2.4393e-07
+Feature VaccinationFull, mu_star 0.00025596, sensitivity 4.7446e-05
+
+Delta 0.009.
+Feature Hispanic, mu_star -4.8999e-07, sensitivity -7.1405e-08
+Feature VaccinationFull, mu_star 0.00050668, sensitivity 9.3922e-05
+
+Delta 0.01.
+Feature Hispanic, mu_star -3.3069e-06, sensitivity -4.819e-07
+Feature VaccinationFull, mu_star 0.00047944, sensitivity 8.8872e-05
+
+-0.01
+-0.009
+-0.008
+-0.007
+-0.006
+-0.005
+-0.004
+-0.003
+-0.002
+-0.001
+0.001
+0.002
+0.003
+0.004
+0.005
+0.006
+0.007
+0.008
+0.009
+0.01
+Ended at 2023-04-06 09:32:11.954276. Elapsed time 17:52:25.465689
