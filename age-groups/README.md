@@ -21,7 +21,7 @@ The Age-groups folder contains the `Temporal Fushion Transformer` implemented in
 * `results`: Contains files for each Age Group showing the Morris Sensistivity results.
 
 * `script`: Contains scripts for submitting batch jobs.
-  * outputs
+  * `outputs`
   * `__init__.py`
   * `prepare_data.py`: Prepare merged data from raw feature files.
   * `sensitivity_analysis.py`: Calculating Morris Sensitivity
