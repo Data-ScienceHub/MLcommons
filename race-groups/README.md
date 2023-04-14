@@ -26,10 +26,10 @@ The Centers for Disease Control and Prevention (CDC) has been tracking COVID-19 
   * `White`
 
 * `script`
-  * `outputs`
-  * `sensitivity analysis`
-  * `training`
-  * `prepare_data.py`
+  * `outputs`: Race Train/Test Outputs and Errors
+  * `sensitivity analysis`: Sesitivity Analysis Script
+  * `training`: Train models for each ethnicity/race group
+  * `prepare_data.py`: Data Preprocessing
 
 * `Plotting All Results.ipynb`: Plots and Sensitivity Results
 
