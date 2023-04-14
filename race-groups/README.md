@@ -8,21 +8,34 @@ The Centers for Disease Control and Prevention (CDC) has been tracking COVID-19 
 
 ## Folder structure
 * `Class`:
-  * `DataMerger.py`: 
+  * `DataMerger.py`:
+  * `Parameters.py`:
+  * `PlotConfig.py`:
+  * `Plotter.py`:
+  * `PredictionProcessor.py`:
 
-* `Ground Truth`:
+* `Ground Truth`: CDC Race Subgroup Data 
 
-* `configurations`:
+* `configurations`: Race/Ethnicity Group Configurations
 
-* `results`:
+* `results`: Race Subgroup Results
+  * `AIAN`
+  * `Asian`
+  * `Black`
+  * `Hispanic`
+  * `White`
 
-* `script`:
+* `script`
+  * `outputs`
+  * `sensitivity analysis`
+  * `training`
+  * `prepare_data.py`
 
-* `Plotting All Results.ipynb`:
+* `Plotting All Results.ipynb`: Plots and Sensitivity Results
 
-* `fig1.png`:
+* `fig1.png`: Race Sensitivity Plot
 
-* `weekly_ground_truth.jpg`:
+* `weekly_ground_truth.jpg`: Weekly Sensitivity Plot
 
 
 ### Runtime
