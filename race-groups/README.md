@@ -8,6 +8,7 @@ The Centers for Disease Control and Prevention (CDC) has been tracking COVID-19 
 
 ## Folder structure
 * `Class`:
+  * `DataMerger.py`: 
 
 * `Ground Truth`:
 
