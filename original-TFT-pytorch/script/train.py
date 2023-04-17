@@ -401,23 +401,6 @@ df.head()
 del train_predictions, validation_predictions, test_predictions
 gc.collect()
 
-# %% [markdown]
-# ## Evaluation by county
-
-# %%
-fips_codes = test_result_merged['FIPS'].unique()
-
-print(f'\n---Per county test results--\n')
-count = 5
-
-for index, fips in enumerate(fips_codes):
-    if index == count: break
-
-    print(f'FIPS {fips}')
-    df = test_result_merged[test_result_merged['FIPS']==fips]
-    show_result(df, targets)
-    print()
-
 # %%
 del train_result_merged, validation_result_merged, test_result_merged, df
 
@@ -428,26 +411,6 @@ del train_result_merged, validation_result_merged, test_result_merged, df
 plotWeights = PlotWeights(
     args.figPath, max_encoder_length, tft, show=args.show_progress_bar
 )
-
-# %% [markdown]
-# ### Train
-
-# %%
-if args.interpret_train:
-    attention_mean, attention = processor.get_mean_attention(
-        tft.interpret_output(train_raw_predictions), 
-        train_index, return_attention=True
-    )
-    plotWeights.plot_attention(
-        attention_mean, figure_name='Train_daily_attention', 
-        limit=0, enable_markers=False, title='Attention with dates'
-    )
-    gc.collect()
-    attention_weekly = processor.get_attention_by_weekday(attention_mean)
-    plotWeights.plot_weekly_attention(attention_weekly, figure_name='Train_weekly_attention')
-
-    attention_mean.round(3).to_csv(os.path.join(plotWeights.figPath, 'attention_mean.csv'), index=False)
-    attention.round(3).to_csv(os.path.join(plotWeights.figPath, 'attention.csv'), index=False)
 
 # %% [markdown]
 # ## Variable importance and mean attention
