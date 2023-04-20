@@ -112,29 +112,6 @@ def show_result(df: pd.DataFrame, targets:List[str]):
         print(f'Target {target}, MAE {mae:.5g}, RMSE {rmse:.5g}, RMSLE {rmsle:0.5g}, SMAPE {smape:0.5g}. NNSE {nnse:0.5g}.')
     print()
 
-
-def get_start_dates(parameters: Parameters):
-    max_encoder_length = parameters.model_parameters.input_sequence_length
-    split = parameters.data.split
-
-    train_start = split.train_start
-    validation_start = split.validation_start
-    test_start = split.test_start
-
-    train_start = train_start + to_timedelta(((split.train_end - train_start).days +1) % max_encoder_length, unit='D')
-    validation_start = validation_start + to_timedelta(((split.validation_end - validation_start).days+1) % max_encoder_length, unit='D')
-    test_start = test_start + to_timedelta(((split.test_end - test_start).days+1) % max_encoder_length, unit='D')
-
-    print('Modifying start dates of the splits to adapt to encoder input sequence length')
-    print(f'Start dates for train {train_start}, validation {validation_start}, test {test_start}')
-
-    split.train_start = train_start
-    split.validation_start = validation_start
-    split.test_start = test_start
-    parameters.data.split = split
-
-    return train_start, validation_start, test_start
-
 def train_validation_test_split(
     df:DataFrame, parameters:Parameters,
 ):
@@ -162,22 +139,6 @@ def train_validation_test_split(
     test_days = (split.test_end - split.test_start).days + 1
 
     print(f'{train_days} days of training, {validation_days} days of validation data, {test_days} days of test data.')
-
-    return train_data, validation_data, test_data
-
-def location_based_split(
-    df:DataFrame, parameters:Parameters, 
-    location:List[float], selected_columns:List
-):
-    train_data, validation_data, test_data = train_validation_test_split(df, parameters)
-    fips_codes = np.random.shuffle(df['FIPS'].unique())
-
-    num_train_counties = np.round(len(fips_codes) * location[0])
-    num_validation_counties = np.round(len(fips_codes) * location[1])
-
-    train_data = train_data[train_data['FIPS'].isin(fips_codes[:num_train_counties])]
-    validation_data = validation_data[validation_data['FIPS'].isin(fips_codes[num_train_counties : (num_train_counties + num_validation_counties)])]
-    test_data = test_data[test_data['FIPS'].isin(fips_codes[(num_train_counties + num_validation_counties): ])]
 
     return train_data, validation_data, test_data
 

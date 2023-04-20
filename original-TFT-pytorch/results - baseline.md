@@ -1,7 +1,8 @@
 # Experiment with Baseline model
+
 The following experiments are on inputs and outputs where outliers were removed. The raw target has very high spikes during covid peak times, specially during late 2021 and early 2022 due to dominant mutants. Removing the outliers show improved loss metrics.
 
-The results are on all 3,142 counties.
+The results are on all 3,142 counties. Note that this model uses the features 
 
 ## Train
 

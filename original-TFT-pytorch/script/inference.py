@@ -228,18 +228,6 @@ plotter.summed_plot(train_result_merged, type='Train_error', plot_error=True)
 gc.collect()
 
 # %% [markdown]
-# ### By future days
-
-# %%
-# gc.collect()
-# for day in range(1, max_prediction_length+1):
-#     print(f'Day {day}')
-#     df = processor.align_result_with_dataset(train_data, train_predictions, train_index, target_time_step = day)
-#     show_result(df, targets)
-#     plotter.summed_plot(df, type=f'Train_day_{day}')
-#     break
-
-# %% [markdown]
 # ## Validation results
 
 # %%

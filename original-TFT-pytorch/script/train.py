@@ -374,18 +374,6 @@ plotter.summed_plot(test_result_merged, 'Test')
 gc.collect()
 
 # %% [markdown]
-# ### By future days
-
-# %%
-for day in range(1, max_prediction_length+1):
-    print(f'Day {day}')
-    df = processor.align_result_with_dataset(
-        test_data, test_predictions, test_index, target_time_step = day
-    )
-    show_result(df, targets)
-    # plotter.summed_plot(df, type=f'Test_day_{day}')
-
-# %% [markdown]
 # ## Dump results
 
 # %%
