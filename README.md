@@ -21,6 +21,10 @@ The COVID-19 pandemic has created unprecedented challenges for governments and h
 
 * `singilarity.def`: For when using singularity.
 
+# Data
+
+Dataset: https://drive.google.com/drive/folders/1_AMG_qreffMI1oqegfG-nAwPAs8xK8Gw
+
 ## Runtime
 
 Currently on Rivanna with batch size 64, each epoch with
