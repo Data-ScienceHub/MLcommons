@@ -150,7 +150,6 @@ def prepare_data(data: pd.DataFrame, pm: Parameters, train=False):
     max_encoder_length=max_encoder_length,
     max_prediction_length=max_prediction_length,
     static_reals=pm.data.static_features,
-    # static_categoricals=['FIPS'],
     time_varying_known_reals = pm.data.time_varying_known_features,
     time_varying_unknown_reals = pm.data.time_varying_unknown_features,
     target_normalizer = MultiNormalizer(
@@ -209,19 +208,17 @@ plotter = PlotResults(args.figPath, targets, show=args.show_progress_bar)
 # %%
 print(f'\n---Training prediction--\n')
 
-train_raw_predictions, train_index = tft.predict(
-    train_dataloader, mode="raw", return_index=True, show_progress_bar=args.show_progress_bar
+train_predictions, train_index = tft.predict(
+    train_dataloader, return_index=True, show_progress_bar=args.show_progress_bar
 )
 
-print('\nTrain raw prediction shapes\n')
-for key in train_raw_predictions.keys():
-    item = train_raw_predictions[key]
-    if type(item) == list: print(key, f'list of length {len(item)}', item[0].shape)
-    else: print(key, item.shape)
-
 print('\n---Training results--\n')
-train_predictions = upscale_prediction(targets, train_raw_predictions['prediction'], target_scaler, max_prediction_length)
-train_result_merged = processor.align_result_with_dataset(train_data, train_predictions, train_index)
+train_predictions = upscale_prediction(
+  targets, train_predictions, target_scaler, max_prediction_length
+)
+train_result_merged = processor.align_result_with_dataset(
+  train_data, train_predictions, train_index
+)
 show_result(train_result_merged, targets)
 
 plotter.summed_plot(train_result_merged, type='Train_error', plot_error=True)
@@ -232,10 +229,10 @@ gc.collect()
 
 # %%
 print(f'\n---Validation results--\n')
-validation_raw_predictions, validation_index = tft.predict(
+validation_predictions, validation_index = tft.predict(
     validation_dataloader, return_index=True, show_progress_bar=args.show_progress_bar
 )
-validation_predictions = upscale_prediction(targets, validation_raw_predictions, target_scaler, max_prediction_length)
+validation_predictions = upscale_prediction(targets, validation_predictions, target_scaler, max_prediction_length)
 
 validation_result_merged = processor.align_result_with_dataset(validation_data, validation_predictions, validation_index)
 show_result(validation_result_merged, targets)
@@ -250,12 +247,16 @@ gc.collect()
 
 # %%
 print(f'\n---Test results--\n')
-test_raw_predictions, test_index = tft.predict(
-    test_dataloader, mode="raw", return_index=True, show_progress_bar=args.show_progress_bar
+test_predictions, test_index = tft.predict(
+    test_dataloader, return_index=True, show_progress_bar=args.show_progress_bar
 )
-test_predictions = upscale_prediction(targets, test_raw_predictions['prediction'], target_scaler, max_prediction_length)
+test_predictions = upscale_prediction(
+   targets, test_predictions, target_scaler, max_prediction_length
+)
 
-test_result_merged = processor.align_result_with_dataset(test_data, test_predictions, test_index)
+test_result_merged = processor.align_result_with_dataset(
+   test_data, test_predictions, test_index
+)
 show_result(test_result_merged, targets)
 plotter.summed_plot(test_result_merged, 'Test')
 gc.collect()
@@ -270,44 +271,7 @@ test_result_merged['split'] = 'test'
 df = pd.concat([train_result_merged, validation_result_merged, test_result_merged])
 df.to_csv(os.path.join(plotter.figPath, 'predictions.csv'), index=False)
 
-df.head()
-
-# %%
-del train_predictions, validation_predictions, test_predictions
-gc.collect()
-
-# %%
-del train_result_merged, validation_result_merged, test_result_merged
-
-# %% [markdown]
-# ## Attention weights
-
-# %%
-plotWeights = PlotWeights(args.figPath, max_encoder_length, tft, show=args.show_progress_bar)
-
-# %% [markdown]
-# ## Variable Importance
-
-# %%
-print(f"Variables:\nStatic {tft.static_variables} \nEncoder {tft.encoder_variables} \nDecoder {tft.decoder_variables}.")
-
-if args.interpret_train:
-    print("Interpreting train predictions")
-    interpretation = tft.interpret_output(train_raw_predictions, reduction="mean")
-else:
-    print("Interpreting test predictions")
-    interpretation = tft.interpret_output(test_raw_predictions, reduction="mean")
-
-for key in interpretation.keys():
-    print(key, interpretation[key]/torch.sum(interpretation[key]))
-
-figures = plotWeights.plot_interpretation(interpretation)
-for key in figures.keys():
-    figure = figures[key]
-    if args.interpret_train:
-        figure.savefig(os.path.join(plotter.figPath, f'Train_{key}.jpg'), dpi=DPI) 
-    else:
-        figure.savefig(os.path.join(plotter.figPath, f'Test_{key}.jpg'), dpi=DPI)
+print(df.head())
 
 # %% [markdown]
 # # End

@@ -314,19 +314,16 @@ tft = TemporalFusionTransformer.load_from_checkpoint(best_model_path)
 
 # %%
 print('\n---Training prediction--\n')
-train_raw_predictions, train_index = tft.predict(
-    train_dataloader, mode="raw", return_index=True, show_progress_bar=args.show_progress_bar
+train_predictions, train_index = tft.predict(
+    train_dataloader, return_index=True, show_progress_bar=args.show_progress_bar
 )
-
-print('\nTrain raw prediction shapes\n')
-for key in train_raw_predictions.keys():
-    item = train_raw_predictions[key]
-    if type(item) == list: print(key, f'list of length {len(item)}', item[0].shape)
-    else: print(key, item.shape)
-
 print('\n---Training results--\n')
-train_predictions = upscale_prediction(targets, train_raw_predictions['prediction'], target_scaler, max_prediction_length)
-train_result_merged = processor.align_result_with_dataset(train_data, train_predictions, train_index)
+train_predictions = upscale_prediction(
+   targets, train_predictions, target_scaler, max_prediction_length
+)
+train_result_merged = processor.align_result_with_dataset(
+   train_data, train_predictions, train_index
+)
 
 show_result(train_result_merged, targets)
 plotter.summed_plot(train_result_merged, type='Train_error', plot_error=True)
@@ -341,9 +338,13 @@ print(f'\n---Validation results--\n')
 validation_raw_predictions, validation_index = tft.predict(
     validation_dataloader, return_index=True, show_progress_bar=args.show_progress_bar
 )
-validation_predictions = upscale_prediction(targets, validation_raw_predictions, target_scaler, max_prediction_length)
+validation_predictions = upscale_prediction(
+   targets, validation_raw_predictions, target_scaler, max_prediction_length
+)
 
-validation_result_merged = processor.align_result_with_dataset(validation_data, validation_predictions, validation_index)
+validation_result_merged = processor.align_result_with_dataset(
+   validation_data, validation_predictions, validation_index
+)
 show_result(validation_result_merged, targets)
 plotter.summed_plot(validation_result_merged, type='Validation')
 gc.collect()
@@ -354,10 +355,13 @@ gc.collect()
 # %%
 print(f'\n---Test results--\n')
 
-test_raw_predictions, test_index = tft.predict(
-    test_dataloader, mode="raw", return_index=True, show_progress_bar=args.show_progress_bar
+test_predictions, test_index = tft.predict(
+    test_dataloader, return_index=True, 
+    show_progress_bar=args.show_progress_bar
 )
-test_predictions = upscale_prediction(targets, test_raw_predictions['prediction'], target_scaler, max_prediction_length)
+test_predictions = upscale_prediction(
+   targets, test_predictions, target_scaler, max_prediction_length
+)
 
 test_result_merged = processor.align_result_with_dataset(total_data, test_predictions, test_index)
 show_result(test_result_merged, targets)
