@@ -3,36 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
-    <!-- <style>
-      th, td {
-      padding: 10px;
-      }
-      h1, h2, h3, h4, h5, h6 {
-        text-align: center;
-      }
-
-      th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-      }
-
-      table {
-          border: 1.5px solid black;
-          border-collapse: collapse;
-          border-spacing: 10px;
-      }
-      tr:hover {background-color: #D6EEEE;}
-      /* tr:nth-child(even) {background-color: #f2f2f2;} */
-      th {
-        background-color: #04AA6D;
-        color: white;
-      }
-    </style> -->
+    <title>Age Group Sensitivity using Deep Learning</title>
   </head>
   <body>
-    <h1>Understanding COVID-19 Infection Rates with Time-Series Deep Learning Models</h1>
+    <h1>Age Group Sensitivity for COVID-19 Infections Forecasting using Deep Learning</h1>
     <h2>Abstract</h2>
       The COVID-19 pandemic has created unprecedented challenges for 
       governments and healthcare systems worldwide, highlighting the 
@@ -114,10 +90,15 @@
     interventions to control the spread of the virus. 
 </p>
 
-  <h3>COVID-19 Cases by Age Groups</h3>
-  Weekly COVID-19 case numbers for each of the eight age subgroups 
-  from the time period of March 1, 2020, to November 27, 2021. <br><br>
-  <img src="../age-groups/weekly_ground_truth.jpg">
+   <br><br>
+  <img style="max-width: 800px;" class="center" src="../age-groups/weekly_ground_truth.jpg">
+  <caption>
+    <h4>
+      Fig. 1: Ground truth: weekly COVID-19 case numbers for each
+  of the eight age subgroups from the time period of March 1,
+  2020, to November 27, 2021.
+    </h4>
+  </caption>
   <br>
 
   <h2>Morris Method</h2>
@@ -140,19 +121,16 @@
     gating mechanism. On a wide range of real-world tasks, TFT achieves 
     state-of-the-art performance. Hence we use the model for our own study 
     here. 
-
-  <h2>Experiment Workflow</h2>
-  <img src="images/Sensitivity Analysis workflow.png">
-  <br>
     
   <h2> Input Data and Features</h2>
     The data set consists of daily COVID-19 cases for over 3,142 US counties with 
     eight age group related static features, one dynamic feature and one known future feature. 
     Feature description and sources are reported in the following table.<br><br>
 
-    <caption> <h3>Details of Features </h3> </caption>
+    
     <div style="overflow-x:auto;text-align:center;vertical-align: middle;">
-      <table  align="center">
+      <table align="center">
+      <caption> <h4>Table 1: Details of Features </h4> </caption>
       <thead>
       <tr>
       <th>Feature</th>
@@ -205,11 +183,12 @@
       <br>
 
     The data set was split into training, validation, and testing sets 
-    following the date range in the table bellow: <br>
+    following the date range in the table bellow: <br><br>
 
-    <caption> <h3>Dateset split and date </h3> </caption>
+    
     <div style="overflow-x:auto;text-align:center;vertical-align: middle;">
       <table  align="center">
+      <caption> <h4>Table 2: Dateset split and date </h4> </caption>
       <thead>
       <tr>
       <th>Dataset</th>
@@ -236,20 +215,24 @@
     <br>
 
   <h2> Model Training and Prediction</h2>
-  <p>
     A separate TFT model was trained for each age group, for a total 
     of eight models. Since all static variables are presented together 
     as context vectors, the separation ensures the identification of 
     a specific subgroup's contribution without the interference of other 
     correlated static variables. In addition to the static age feature, 
     all TFT models include a dynamic vaccination status feature. 
+
+    <img style="max-width: 1000px" class="center" src="images/Sensitivity Analysis workflow.png">
+    <h4>Fig. 2: Workflow of Population Age Group Sensitivity Analysis for COVID-19 Forecasts.</h4>
+    <br>
+
+    
     An additional variable SinWeekly is also included, which represents 
     weekly trends for changes in the number of new cases. 
     The target variable for each model was the daily number of cases 
     for each county. The daily predictions for each county were determined 
     for the training, validation, and testing time periods. These predictions 
     were compared to the observed values to obtain RMSE values. 
-  </p>
     
   <h2>Sensitivity Analysis</h2>
   <p>
@@ -274,12 +257,14 @@
     the static input and the output.
   <br><br>
 
+  <img style="max-width: 800px" class="center" src="../age-groups/model sensitivity.png">
   <caption>
-    <h3>Morris scores for all eight models, calculated at intervals of 0.001, excluding zero.
-    </h3>
+    <h4>
+      Fig. 3: Morris scores for all eight models, calculated at intervals of 0.001, excluding zero.
+    </h4>
   </caption>
-  <img src="../age-groups/model sensitivity.png">
-    
+  <br>
+
     Despite the relatively small values, there is a clear distinction 
     between which age groups have higher Morris indices on average. 
     This separation allowed us to rank the age groups based on their 
@@ -299,12 +284,12 @@
     of 54,992,661 for that age group. This results in an infection rate 
     of 18.2 percent. The infection rates for all age groups are shown below: <br><br>
       
-  <caption> <h3>
-  Total number of cases, population, and infection rate of each age group. 
-  </h3> </caption>
+
   <div style="overflow-x:auto;text-align:center;vertical-align: middle;">
     <table align="center">
-
+    <caption> <h4>
+      Table 3: Total number of cases, population, and infection rate of each age group. 
+    </h4> </caption>
     <thead>
     <tr>
     <th>Age Group</th>
@@ -353,12 +338,12 @@
     (lowest) to 8 (highest) value. After ranking each subgroup for all 20 delta values, 
     the average ranking was determined.<br><br>
 
-    <h3>
-      Ranking of the contribution of each age group. 
-    </h3>
+    
     <div style="overflow-x:auto;text-align:center;vertical-align: middle;">
       <table align="center" border="1">
-      
+        <caption><h4>
+          Table 4: Ranking of the contribution of each age group. 
+        </h4></caption>
       <thead>
       <tr>
       <th>Age Group</th>
@@ -419,7 +404,6 @@
 Prior work involved simulation of the spread of COVID-19 using a fractal-fractional model and used sensitivity analysis to assess the impact of model parameters such as the transmission rate, recovery rate, and vaccination rate on the outcomes of the model. Other work investigated the impact of key model parameters on the outcomes of a Susceptible-Carrier-Exposed-Infected-Recovered (SCEIR) model predicting COVID-19 infection. Similarly, additional work analyzed the demographic patterns of COVID-19 cases during the recent resurgence of the pandemic in the United States. The data, consisting of 948 counties, studies the age distribution of cases and their relationship with changes in COVID-19 incidence.</p>
     
   <h2> Conclusion and Future Work</h2>
-  <p>
     Typically, deep learning lacks sufficient interpretability to understand the 
     decisions a model makes to improve predictive performance. However, our work 
     demonstrates the successful application of the Morris method. By analyzing model 
@@ -437,7 +421,6 @@ Prior work involved simulation of the spread of COVID-19 using a fractal-fractio
   By training new TFT models for a variety of time periods, we can better understand how the 
   impact of COVID-19 varies throughout the pandemic and can further strengthen the reliability 
   of our methods. 
-</p>
 
   <h2>References</h2>
   <ol>
