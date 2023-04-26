@@ -10,7 +10,8 @@ body {
 }
 
 img {
-    width: 80%;
+  width: 100%;
+  height: auto;
 }
 
 th, td {
@@ -18,6 +19,12 @@ th, td {
 }
 h1, h2, h3, h4, h5, h6 {
     text-align: center;
+}
+
+img {
+    overflow-x:auto;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 th, td {
