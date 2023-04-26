@@ -91,7 +91,7 @@
 </p>
 
    <br><br>
-  <img style="max-width: 800px;" class="center" src="../age-groups/weekly_ground_truth.jpg">
+  <img style="max-width: 800px;" class="center" src="Feature-Selection/age-groups/weekly_ground_truth.jpg">
   <caption>
     <h4>
       Fig. 1: Ground truth: weekly COVID-19 case numbers for each
@@ -129,14 +129,14 @@
 
     
     <div style="overflow-x:auto;text-align:center;vertical-align: middle;">
-      <table align="center">
-      <caption> <h4>Table 1: Details of Features </h4> </caption>
+      <table align="center" style="max-width: 1000px;">
+      <caption> <h4>Table 1: Details of Collected Features and Sources.</h4> </caption>
       <thead>
       <tr>
       <th>Feature</th>
       <th>Type</th>
       <th>Update Frequency</th>
-      <th>Description</th>
+      <th style="min-width: 200px;">Description</th>
       <th>Source(s)</th>
       </tr>
       
@@ -220,12 +220,11 @@
     as context vectors, the separation ensures the identification of 
     a specific subgroup's contribution without the interference of other 
     correlated static variables. In addition to the static age feature, 
-    all TFT models include a dynamic vaccination status feature. 
+    all TFT models include a dynamic vaccination status feature. <br>
 
-    <img style="max-width: 1000px" class="center" src="images/Sensitivity Analysis workflow.png">
+    <img style="max-width: 1000px;" class="center" src="images/Sensitivity Analysis workflow.png">
     <h4>Fig. 2: Workflow of Population Age Group Sensitivity Analysis for COVID-19 Forecasts.</h4>
     <br>
-
     
     An additional variable SinWeekly is also included, which represents 
     weekly trends for changes in the number of new cases. 
