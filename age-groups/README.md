@@ -30,6 +30,6 @@ The Age-groups folder contains the `Temporal Fushion Transformer` implemented in
 
 * `Plotting All Results.ipynb`: Plotting Morris Index Results and Final Rankings.
 
-* `fig1.png`: Model Sensitivity to Age.
+* `model sensitivity.png`: Model Sensitivity to Age.
 
 * `fig2.png`: Weekly COVID-19 Cases by Age Group.
