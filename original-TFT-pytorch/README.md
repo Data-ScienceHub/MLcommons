@@ -13,7 +13,7 @@ This folder contains the `Temporal Fushion Transformer` implemented in [`Pytorch
   * DataProcessor
   * Parameters
   * Plotter
-
+  
 * `configurations`: Folder to save some common configurations.
 * `notebooks`: Notebook version of the scripts. Use these for debugging or new implementation purpose.
   * Data preparation.ipynb
